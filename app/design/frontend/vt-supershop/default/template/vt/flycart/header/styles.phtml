@@ -1,0 +1,42 @@
+<?php
+/**
+ *Flycart Extension
+ *
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.store.vttheme.com/license.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to admin@vttheme.com so we can mail you a copy immediately.
+ *
+ * @category   Magento Extensions
+ * @package    VtthemePro_Flycart
+ * @author     VtthemePro <sales@vttheme.com>
+ * @copyright  2007-2011 VtthemePro
+ * @license    http://www.store.vttheme.com/license.txt
+ * @version    1.0.1
+ * @link       http://www.store.vttheme.com
+ */
+ ?>
+<style type="text/css">	
+	.flycart-loading{			
+		<?php if($_width = intval(Mage::getStoreConfig('flycart/ajaxloader/width'))):?>
+		width:<?php echo $_width;?>px !important;
+		margin-left: -<?php echo intval($_width/2 + 9);?>px;
+		<?php endif;?>
+		
+		<?php if($_height = intval(Mage::getStoreConfig('flycart/ajaxloader/height'))):?>
+		height:<?php echo $_height;?>px !important;
+		margin-top: -<?php echo intval($_height/2 + 9);?>px;
+		<?php endif;?>		
+	}
+	
+	<?php if ($_width>0){
+		$_width_top=16+$_width;
+		$_width_right=14+$_width;
+		echo '#flycart_configurable_add_to_cart_close{top:-'.$_width_top.'px;right:-'.$_width_right.'px;}';
+	} ?>
+
+	
+</style>

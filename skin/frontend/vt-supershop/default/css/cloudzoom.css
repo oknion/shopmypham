@@ -1,0 +1,31 @@
+/* This is the moving lens square underneath the mouse pointer. */
+.cloud-zoom-lens {
+cursor:crosshair;
+font-size: 50px;
+color: #000;
+background: none !important;
+border: none !important;
+}
+/* This is for the title text. */
+.cloud-zoom-title {
+	display: none;
+}
+/* cloud zoom wrapper styles */
+.cloud-zoom-wrap {
+top:0;
+z-index:9999;
+position:relative;
+}
+/* This is the zoom window. */
+.cloud-zoom-big {
+border:1px solid #eee !important;
+width: 80% !important; height: 80% !important;
+overflow:hidden;
+}
+/* This is the loading message. */
+.cloud-zoom-loading {
+color:white;
+background:#222;
+padding:3px;
+border:1px solid #000;
+}

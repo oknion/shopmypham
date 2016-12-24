@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Vt_Flycart>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Vt_Flycart>
+    </modules>
+</config> 

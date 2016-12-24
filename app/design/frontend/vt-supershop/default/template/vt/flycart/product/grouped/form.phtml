@@ -1,0 +1,56 @@
+<?php
+/**
+ *Flycart Extension
+ *
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.store.vt.com/license.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to admin@vt.com so we can mail you a copy immediately.
+ *
+ * @category   Magento Extensions
+ * @package    Vt_Flycart
+ * @author     Vt <sales@vt.com>
+ * @copyright  2007-2011 Vt
+ * @license    http://www.store.vt.com/license.txt
+ * @version    1.0.1
+ * @link       http://www.store.vt.com
+ */
+ ?>
+
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+
+<script type="text/javascript">
+//<![CDATA[
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+//]]>    
+</script>
+<?php  
+    $submit_url = $this->getSubmitUrl($_product);
+    if (!$submit_url){
+        $submit_url = $this->getAddToCartUrl($_product);
+    }
+?>
+<form action="<?php echo $submit_url ?>" method="post" id="flycart_product_addtocart_form"<?php if($_product->getOptions()): ?> enctype="multipart/form-data"<?php endif; ?>>        
+    <input type="hidden" name="product" value="<?php echo $_product->getId() ?>" />
+    <input type="hidden" name="related_product" id="related-products-field" value="" />
+    <input type="hidden" name="flycart_add" value="1" />
+	<span class="flycart_prod_name"><?php echo $_product->getName(); ?></span>
+    <?php echo $this->getChildHtml('product_type_data') ?>
+    <?php echo $this->getChildHtml('product_options_wrapper_bottom') ?>        
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+    var productAddToCartForm = new VarienForm('flycart_product_addtocart_form');
+    productAddToCartForm.submit = function(button) {
+        if (this.validator.validate()) {
+            
+            ajaxcartConfig.addtoCartGrouped(this.form);
+        }
+    }.bind(productAddToCartForm);
+//]]>
+</script>        

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<layout version="0.1.0">
+	<default>        
+        <reference name="after_body_start">
+            <block type="flycart/initial" name="vt.flycart.initial" before="-" />
+        </reference>
+        <reference name="head">    	    		    		    		    	
+        	<action method="addItem"><type>skin_css</type><name>vt/flycart/css/flycart.css</name></action>	    		      		     		
+    		<action method="addJs"><script>vt/flycart/flycart.js</script></action>
+    		<action method="addJs"><script>prototype/effects.js</script></action>
+    		<action method="addJs"><script>varien/product.js</script></action>
+            <action method="addJs"><script>varien/configurable.js</script></action>
+            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+            <action method="addItem"><type>skin_js</type><name>js/bundle.js</name></action> 
+    	</reference>	   
+    </default>
+    <catalog_category_default>    	
+    	<reference name="content">
+    		<block type="flycart/product_list" name="vt.flycart.product.list" template="vt/flycart/product/list.phtml" />
+    	</reference>	
+    </catalog_category_default>
+    <catalog_category_layered>
+    	<reference name="content">
+    		<block type="flycart/product_list" name="vt.flycart.product.list" template="vt/flycart/product/list.phtml" />
+    	</reference>
+    </catalog_category_layered>	
+    <catalog_product_view>    	    	
+    	<reference name="after_body_start">
+    		<block type="flycart/product_view" name="vt.flycart.product.view" template="vt/flycart/product/list.phtml" before="-" />
+    	</reference>
+    </catalog_product_view>	
+</layout>

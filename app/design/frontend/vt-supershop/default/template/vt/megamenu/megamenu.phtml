@@ -1,0 +1,246 @@
+<?php
+/*------------------------------------------------------------------------
+ # VT MegaMenu - Version 1.0
+ * Copyright (C) 2013 The VT Theme. All Rights Reserved.
+ * @license - GNU/GPL, http://www.gnu.org/licenses/gpl.html
+ * Author: VT Theme
+ * Websites: http://www.vttheme.com
+-------------------------------------------------------------------------*/
+$prefix = Vt_Megamenu_Model_System_Config_Source_Html::PREFIX;
+$smarthelper= Mage::helper('megamenu/utils');
+$itemsStartLv = $this->getItems();
+$config = $this->getConfigObject();
+$uq = uniqid($prefix.'menu');
+if($config['theme']==Vt_Megamenu_Model_System_Config_Source_ListTheme::HORIZONTAL){
+$theme = 'horizontal';
+}elseif($config['theme']==Vt_Megamenu_Model_System_Config_Source_ListTheme::VERTICAL){
+$theme = 'vertical';
+}
+$instance	= rand().time();
+
+global $var_vttheme; 
+$home = '';
+	$l = $var_vttheme->getParam('layout_home');
+    if($l==2){
+    	$home ='home-02';
+    }elseif($l==1){
+    	$home = 'home';
+    }elseif($l==3){
+    	$home = 'home-03';
+    }
+?>
+<!-- Is mega menu home -->
+<?php if($home=='home'){ ?>
+<?php if(count($itemsStartLv)):?>
+<div id="<?php echo $uq; ?>" class="vt-megamenu-wrap <?php echo $theme ?>-menu<?php echo ($config['effect'])?' using-effect':' no-effect'; ?>">
+<?php 
+	$isHomepage = Mage::getSingleton('cms/page')->getIdentifier();
+	if($theme =='vertical'){ ?>
+		<h2 class="title-menu"><?php echo $this->__('Categories');  ?>		
+		<span class="btn-menu"></span>		
+		</h2>
+<?php } ?>	
+	<ul class="<?php if($theme !='vertical'){ ?> mainnav <?php }?>s mega-nav">
+	<?php
+	$i = 0;
+	foreach($itemsStartLv as $itemStartLv){
+		$i++;
+		$link = 'javascript:void(0)';
+		$homeClass = '';
+		if($this->hasLinkType($itemStartLv)){
+			$link = $this->getLinkOfType($itemStartLv);
+			if($link.'/' == Mage::helper('core/url')->getHomeUrl() || $link.'/' == $this->getUrl('home') || strpos($link, 'home') || strpos($link.'/', 'index.php/?' ) || $link.'/' == '/'){
+				$homeClass = ' nav-home';
+				$link = Mage::helper('core/url')->getHomeUrl();
+			}
+		}?>
+		<li class="level0<?php echo (!$this->isLeaf($itemStartLv))?' parent':''; ?><?php echo ($this->isAlignRight($itemStartLv))?' align-right':''?><?php echo ($this->isActived($itemStartLv))?' active':'' ?><?php echo ($itemStartLv->custom_class!="")?' '.$itemStartLv->custom_class:''; ?><?php echo ($i==count($itemsStartLv))?' last':'';?>">
+			<a class="<?php echo ($this->isActived($itemStartLv))?'actived':'' ?><?php echo $homeClass; ?>"
+				href="<?php echo $link; ?>"
+				<?php echo ($this->hasLinkType($itemStartLv))?$smarthelper->getTargetAttr($itemStartLv->getTarget()):'' ?> 
+				id="<?php echo $prefix.$itemStartLv->getId()?>">
+
+				<span class="menu-title">
+					<?php echo $itemStartLv->getTitle() ?>
+				</span>
+			</a>
+			<?php
+			$childItems = Mage::helper('megamenu')->getChildsDirectlyByItem($itemStartLv);?>
+			<?php
+			if($this->isLeaf($itemStartLv) OR !count($childItems->getItems())){ ?>
+				<?php
+				if($this->hasConntentType($itemStartLv)){?>
+					<div class="mega-content-wrap megamenu-col megamenu-<?php echo $itemStartLv->getColsNb()?>col<?php echo ($this->isAlignRight($itemStartLv))?' align-right':''?><?php echo ($this->isActived($itemStartLv))?' active':'' ?><?php echo ' level'.($itemStartLv->getDepth())?><?php echo (!$this->isLeaf($itemStartLv) || ($this->hasConntentType($itemStartLv)))?' have-spetitle':'' ?><?php echo ($itemStartLv->custom_class!="")?' '.$itemStartLv->custom_class:''; ?>" >
+						<?php if($itemStartLv->getShowTitle()==Vt_Megamenu_Model_System_Config_Source_Status::STATUS_ENABLED){	?>
+						<div class="mega-title"><span><?php echo $itemStartLv->getTitle()?></span></div>
+						<?php } ?>
+						<div class="mega-content"><?php echo $this->getContentType($itemStartLv) ?></div>
+					</div>
+				<?php
+				}
+				continue;
+			} ?>
+			<?php echo $this->getItemHtml($itemStartLv, ($itemStartLv->getDepth())?true:false); ?>
+		</li>
+	<?php
+	}?>
+	</ul>
+</div>
+<?php else: ?>
+<p class="note-msg"><?php echo $this->__('There are no items matching the selection.') ?></p>
+<?php endif; ?>
+<script type="text/javascript">                
+     jQuery(document).ready(function($){ 
+     	var w = $(window).width(); 
+     	if(w < 1024){     	
+     		$(".mega-nav").hide();
+     	}
+     	<?php if($isHomepage != 'home' && $isHomepage != 'home-02'){ ?>		                        
+       		$(".mega-nav").hide();
+       <?php }?>
+	   <?php if($isHomepage == 'home-04'){ ?>		                        
+       		$(".mega-nav").show();
+       <?php }?>
+        $('.vertical-menu .btn-menu').click(function(){        	
+            $(".mega-nav").slideToggle("fast");
+        });         
+    });
+</script>
+
+<?php } ?>
+<!--end layout home-->
+
+<!-- Is mega menu home 02 -->
+<?php if($home=='home-02'){ ?>
+<?php if(count($itemsStartLv)):?>
+<div id="<?php echo $uq; ?>" class="vt-megamenu-wrap <?php echo $theme ?>-menu<?php echo ($config['effect'])?' using-effect':' no-effect'; ?>">
+<?php 
+	$isHomepage = Mage::getSingleton('cms/page')->getIdentifier();
+	if($theme =='vertical'){ ?>
+		<h2 class="title-menu"><?php echo $this->__('Categories');  ?>		
+		<span class="btn-menu"></span>		
+		</h2>
+<?php } ?>	
+	<ul class="<?php if($theme !='vertical'){ ?> mainnav <?php }?> mega-nav">
+	<?php
+	$i = 0;
+	foreach($itemsStartLv as $itemStartLv){
+		$i++;
+		$link = 'javascript:void(0)';
+		$homeClass = '';
+		if($this->hasLinkType($itemStartLv)){
+			$link = $this->getLinkOfType($itemStartLv);
+			if($link.'/' == Mage::helper('core/url')->getHomeUrl() || $link.'/' == $this->getUrl('home') || strpos($link, 'home') || strpos($link.'/', 'index.php/?' ) || $link.'/' == '/'){
+				$homeClass = ' nav-home';
+				$link = Mage::helper('core/url')->getHomeUrl();
+			}
+		}?>
+		<li class="level0<?php echo (!$this->isLeaf($itemStartLv))?' parent':''; ?><?php echo ($this->isAlignRight($itemStartLv))?' align-right':''?><?php echo ($this->isActived($itemStartLv))?' active':'' ?><?php echo ($itemStartLv->custom_class!="")?' '.$itemStartLv->custom_class:''; ?><?php echo ($i==count($itemsStartLv))?' last':'';?>">
+			<a class="<?php echo ($this->isActived($itemStartLv))?'actived':'' ?><?php echo $homeClass; ?>"
+				href="<?php echo $link; ?>"
+				<?php echo ($this->hasLinkType($itemStartLv))?$smarthelper->getTargetAttr($itemStartLv->getTarget()):'' ?> 
+				id="<?php echo $prefix.$itemStartLv->getId()?>">
+
+				<span class="menu-title">
+					<?php echo $itemStartLv->getTitle() ?>
+				</span>
+			</a>
+			<?php
+			$childItems = Mage::helper('megamenu')->getChildsDirectlyByItem($itemStartLv);?>
+			<?php
+			if($this->isLeaf($itemStartLv) OR !count($childItems->getItems())){ ?>
+				<?php
+				if($this->hasConntentType($itemStartLv)){?>
+					<div class="mega-content-wrap megamenu-col megamenu-<?php echo $itemStartLv->getColsNb()?>col<?php echo ($this->isAlignRight($itemStartLv))?' align-right':''?><?php echo ($this->isActived($itemStartLv))?' active':'' ?><?php echo ' level'.($itemStartLv->getDepth())?><?php echo (!$this->isLeaf($itemStartLv) || ($this->hasConntentType($itemStartLv)))?' have-spetitle':'' ?><?php echo ($itemStartLv->custom_class!="")?' '.$itemStartLv->custom_class:''; ?>" >
+						<?php if($itemStartLv->getShowTitle()==Vt_Megamenu_Model_System_Config_Source_Status::STATUS_ENABLED){	?>
+						<div class="mega-title"><span><?php echo $itemStartLv->getTitle()?></span></div>
+						<?php } ?>
+						<div class="mega-content"><?php echo $this->getContentType($itemStartLv) ?></div>
+					</div>
+				<?php
+				}
+				continue;
+			} ?>
+			<?php echo $this->getItemHtml($itemStartLv, ($itemStartLv->getDepth())?true:false); ?>
+		</li>
+	<?php
+	}?>
+	</ul>
+</div>
+<?php else: ?>
+<p class="note-msg"><?php echo $this->__('There are no items matching the selection.') ?></p>
+<?php endif; ?>
+<script type="text/javascript">                
+     jQuery(document).ready(function($){ 
+     	var w = $(window).width();
+     	if(w <= 1024){
+     		$(".mega-nav").hide();
+     	}
+     	<?php if($isHomepage != 'home' && $isHomepage != 'home-02'){ ?>		                        
+       		$(".mega-nav").hide();
+       <?php }?>
+        $('.vertical-menu .btn-menu').click(function(){        	
+            $(".mega-nav").slideToggle("fast");
+        });         
+    });
+</script>
+
+<?php } ?>
+<!--end layout home 02-->
+
+<!-- Is mega menu home 03 -->
+<?php if($home=='home-03'){ ?>
+<?php if(count($itemsStartLv)):?>
+<div id="<?php echo $uq; ?>" class="vt-megamenu-wrap <?php echo $theme ?>-menu<?php echo ($config['effect'])?' using-effect':' no-effect'; ?>">
+
+	<ul class="<?php if($theme !='vertical'){ ?> mainnav <?php }?>s mega-nav" style="display:inherit;">
+	<?php
+	$i = 0;
+	foreach($itemsStartLv as $itemStartLv){
+		$i++;
+		$link = 'javascript:void(0)';
+		$homeClass = '';
+		if($this->hasLinkType($itemStartLv)){
+			$link = $this->getLinkOfType($itemStartLv);
+			if($link.'/' == Mage::helper('core/url')->getHomeUrl() || $link.'/' == $this->getUrl('home') || strpos($link, 'home') || strpos($link.'/', 'index.php/?' ) || $link.'/' == '/'){
+				$homeClass = ' nav-home';
+				$link = Mage::helper('core/url')->getHomeUrl();
+			}
+		}?>
+		<li class="level0<?php echo (!$this->isLeaf($itemStartLv))?' parent':''; ?><?php echo ($this->isAlignRight($itemStartLv))?' align-right':''?><?php echo ($this->isActived($itemStartLv))?' active':'' ?><?php echo ($itemStartLv->custom_class!="")?' '.$itemStartLv->custom_class:''; ?><?php echo ($i==count($itemsStartLv))?' last':'';?>">
+			<a class="<?php echo ($this->isActived($itemStartLv))?'actived':'' ?><?php echo $homeClass; ?>"
+				href="<?php echo $link; ?>"
+				<?php echo ($this->hasLinkType($itemStartLv))?$smarthelper->getTargetAttr($itemStartLv->getTarget()):'' ?> 
+				id="<?php echo $prefix.$itemStartLv->getId()?>">
+
+				<span class="menu-title">
+					<?php echo $itemStartLv->getTitle() ?>
+				</span>
+			</a>
+			<?php
+			$childItems = Mage::helper('megamenu')->getChildsDirectlyByItem($itemStartLv);?>
+			<?php
+			if($this->isLeaf($itemStartLv) OR !count($childItems->getItems())){ ?>
+				<?php
+				if($this->hasConntentType($itemStartLv)){?>
+					<div class="mega-content-wrap megamenu-col megamenu-<?php echo $itemStartLv->getColsNb()?>col<?php echo ($this->isAlignRight($itemStartLv))?' align-right':''?><?php echo ($this->isActived($itemStartLv))?' active':'' ?><?php echo ' level'.($itemStartLv->getDepth())?><?php echo (!$this->isLeaf($itemStartLv) || ($this->hasConntentType($itemStartLv)))?' have-spetitle':'' ?><?php echo ($itemStartLv->custom_class!="")?' '.$itemStartLv->custom_class:''; ?>" >
+						<?php if($itemStartLv->getShowTitle()==Vt_Megamenu_Model_System_Config_Source_Status::STATUS_ENABLED){	?>
+						<div class="mega-title"><span><?php echo $itemStartLv->getTitle()?></span></div>
+						<?php } ?>
+						<div class="mega-content"><?php echo $this->getContentType($itemStartLv) ?></div>
+					</div>
+				<?php
+				}
+				continue;
+			} ?>
+			<?php echo $this->getItemHtml($itemStartLv, ($itemStartLv->getDepth())?true:false); ?>
+		</li>
+	<?php
+	}?>
+	</ul>
+</div>
+<?php else: ?>
+<p class="note-msg"><?php echo $this->__('There are no items matching the selection.') ?></p>
+<?php endif; ?>
+<?php } ?>
+<!--end layout home-03-->

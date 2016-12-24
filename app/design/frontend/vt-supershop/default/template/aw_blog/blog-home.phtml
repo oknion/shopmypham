@@ -1,0 +1,74 @@
+<?php
+/**
+ * aheadWorks Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento community edition
+ * aheadWorks does not guarantee correct work of this extension
+ * on any other Magento edition except Magento community edition.
+ * aheadWorks does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   AW
+ * @package    AW_Blog
+ * @version    1.2.1
+ * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+ * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+ */
+?> 
+<?php include_once 'helper.php'; ?>
+<?php $posts = $this->getPosts(); ?>
+<div class="wrap-blog-home">
+<div id="messages_product_view">
+    <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?> 
+    <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?> 
+</div>
+
+	<div class="title"><span>Recent blog posts</span>
+		<p>Etiam sodales ante id nunc. Proin ornare dignissim lacus. Nunc porttitor nunc a sem.</p>
+	</div>
+	<ol id="blog-list">	
+	<?php 
+	 foreach ($posts as $key=>$post): 	 	
+	 	if ($key <= 3) {
+	?>
+	    <li class="item">
+			<div class="item-inner">
+				<?php                   
+                $short_content = strip_tags($post->getShortContent());
+                $images = ImageHelper::getInlineImages($post->getShortContent());
+                ?>
+                <?php if(!empty($images)){ ?>
+                <a class="link-item" href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>">
+                <?php echo $images[0]; ?>    
+                </a>
+                <?php } ?> 
+                <p class="blog-name"><a href="<?php echo $post->getAddress(); ?>" ><span><?php echo $post->getTitle(); ?></span></a></p>
+                <p class="wrap">
+                	<span class="item-c"><?php echo $post->getCommentCount(); ?></span>
+                    <span class="item-d">
+                             <?php
+                            $_ct= new Zend_Date($post->getCreatedTime()); 
+                            $str = $_ct->toString('d/M/Y');
+                            echo $str;
+                            ?>
+                    </span>   
+                </p>
+			</div>
+	    </li>
+	<?php 
+	}
+	endforeach; ?>
+	</ol> 
+</div>
+

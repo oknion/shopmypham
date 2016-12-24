@@ -1,0 +1,105 @@
+#settings-box {
+	background: #fff;
+	border-top: 1px solid #eee;	
+	padding: 30px;
+	position: fixed;
+	top: 204px;
+	width: 275px;
+	z-index: 9999999;
+	left: -275px;
+	-moz-box-shadow: 5px 5px 0 #eee;
+	-webkit-box-shadow: 5px 5px 0 #eee;
+	box-shadow: 5px 5px 0 #eee;
+}
+#btn_toggle {	
+	width: 35px;
+	height: 30px;
+	background: #ffc229;
+	position: absolute;
+	right: -35px;
+	top: 10px;	
+	cursor: pointer;		
+}
+#btn_toggle:hover{
+	background: #000;
+}
+#btn_toggle:before{
+	content: '';
+	width: 24px; height: 12px;
+	background: url('../images/cp-arrow.png') no-repeat 0 0;
+	position: absolute;
+	top: 11px; left: 6px;
+}
+#settings-box h2{
+	margin: 0;
+	font-size: 18px;
+	line-height: 15px;
+	padding-bottom: 14px;
+	border-bottom: 1px solid #eee;
+}
+#settings-box h3{
+	margin: 25px 0 10px 0;
+	line-height: 14px;
+	font-size: 14px;
+}
+.store-switcher{ position: relative; }
+.store-switcher span{
+	width: 100%; float:  left; height: 30px; line-height: 30px;
+	border: 1px solid #eee; padding-left: 45px; cursor: pointer; position: relative;
+}
+.store-switcher span:before{
+	content: '\f0d7'; font-size: 14px; font-family: "FontAwesome"; position: absolute; right: 10px; top: 0px; 
+}
+.store-switcher ul{
+	border: 1px solid #eee; background: #fff;
+	float: left; width: 100%; top: 29px; z-index: 9;
+	position: absolute; left: 0; padding: 10px 0;
+}
+.store-switcher ul li{ margin: 5px 0; }
+.store-switcher ul li a{ padding-left: 45px; position: relative; }
+.store-switcher a:after,.store-switcher span:after{
+	content: ''; width: 27px; height: 16px; position: absolute; left: 10px; top: 0;
+}
+.store-switcher span:after{ top: 6px; }
+.store-switcher .default:after{
+	background: #e62e04;
+}
+.store-switcher .french:after{
+	background: #e62e04;
+}
+.store-switcher .argentina:after{
+	background: #558abe;
+}
+.store-switcher .german:after{
+	background: #94c67b;
+}
+.store-switcher .spain:after{
+	background: #fe9c00;
+}
+.store-switcher .sweden:after{
+	background: #e0583b;
+}
+.store-switcher .italy:after{
+	background: #cb857f;
+}
+.store-switcher .chile:after{
+	background: #abd5d1;
+}
+.store-switcher .hungary:after{
+	background: #e62e04;
+}
+.store-switcher .brazil:after{
+	background: #fe9c00;
+}
+
+.box-layout,.box-menu{ float: left; width: 100%; }
+.box-layout .selector,.box-menu .selector{ width: 100% !important; float: left; position:  relative;}
+.box-layout span, .box-menu span{display: block; padding: 0 10px; position: absolute; top: 0; left: 0;
+border: 1px solid #eee; height: 30px; line-height: 30px; width: 100% !important;
+}
+.box-layout span:before, .box-menu span:before{
+	content: '\f0d7'; font-size: 14px; font-family: "FontAwesome"; position: absolute; right: 10px; top: 0px; 
+}
+.box-layout select:hover,.box-menu select:hover{ cursor: pointer; }
+.box-layout select, .box-menu select{ width: 100%; height: 30px; opacity: 0; }
+.box-menu, .box-menu{ float: left; width: 100%; }

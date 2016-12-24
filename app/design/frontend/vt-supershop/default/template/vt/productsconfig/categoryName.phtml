@@ -1,0 +1,8 @@
+<?php
+$categoryList = $this->getListCategoriesFilter(); 
+if ($categoryList) {
+?>
+<div class="title">
+    <?php echo $categoryList[0]->getName(); ?>
+</div>
+<?php }?>

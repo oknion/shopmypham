@@ -1,0 +1,246 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category   design_default
+ * @package    Mage
+ * @copyright  Copyright (c) 2008 Irubin Consulting Inc. DBA Varien (http://www.varien.com)
+ * @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product media data template
+ *
+ * @see Mage_Catalog_Block_Product_View_Media
+ */
+?>
+
+<?php
+$_product = $this->getProduct();
+$_helper = $this->helper('catalog/output');
+global $var_vttheme;
+if ($_product->getImage() != 'no_selection' && $_product->getImage()){
+    $now = date("Y-m-d H:m:s");
+    $newsFrom= $_product->getNewsFromDate();
+    $newsTo=  $_product->getNewsToDate();
+    $specialprice = Mage::getModel('catalog/product')->load($_product->getId())->getSpecialPrice(); 
+    $special_from_date = $_product->getSpecialFromDate();
+    $special_to_date = $_product->getSpecialToDate();  
+    
+?>
+<div class="vt-detail-image">
+    <div class="product-image-zoom">
+        <?php   
+        if($newsFrom != ''){                            
+        if (($now>=$newsFrom && $now<=$newsTo)||($now>=$newsFrom && $newsTo =='')){  ?>
+            <div class='new-item'><?php echo $this->__("new"); ?></div>
+        <?php }
+        }else{
+        if(($newsTo != "") && $newsTo >= $now){ 
+        ?>
+            <div class='new-item'><?php echo $this->__("new"); ?></div>
+        <?php }
+        }?>
+        <?php 
+        if (($specialprice && ($special_from_date <= $now) && ($special_to_date >= $now || $special_to_date =="" ))){?>
+            <div class='sale-item'>
+                <span><?php
+                $saleof= abs(($specialprice/($_product->getPrice()))*100-100);?>
+                <?php   print_r(floor($saleof)); ?>%</span><span><?php echo $this->__("off");?></span>
+            </div>
+        <?php } ?>
+        <?php $_img = '<img id="image" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(350,420).'" alt="'.$this->htmlEscape($this->getImageLabel()).'" title="'.$this->htmlEscape($this->getImageLabel()).'" />';?>
+        <a id="vt_cloudzoom" class="cloud-zoom" rel="zoomWidth:250, zoomHeight:250, adjustX: 20, adjustY: -3" title="<?php echo $this->htmlEscape($this->getImageLabel()); ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'image'); ?>">
+            <?php
+            echo $_helper->productAttribute($_product, $_img, 'image');
+            ?>
+        </a>
+        <div class="popup-btn  xs-hide">
+            <a id="popup-image" class="fancybox-image" data-fancybox-group="button" href="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail'); ?>">
+                <?php echo $this->__("Mouse over to zoom in");?>
+            </a>
+            <?php foreach ($this->getGalleryImages() as $_image){ ?>    
+                <a style="display:none;" class="fancybox-image fancybox-item " data-fancybox-group="button" href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())?>">
+                </a>
+            <?php }?>           
+        </div>
+    </div>
+</div>
+
+<?php  } else {
+    $_img = '<img width="350" height="420" src="'.$this->helper('catalog/image')->init($_product, 'image')->resize(350,420).'" alt="'.$this->htmlEscape($_product->getImageLabel()).'" />';
+?>
+<div class="product-image-zoom">
+<?php   
+        if($newsFrom != ''){                            
+        if (($now>=$newsFrom && $now<=$newsTo)||($now>=$newsFrom && $newsTo =='')){  ?>
+            <div class='new-item'><?php echo $this->__("new"); ?></div>
+        <?php }
+        }else{
+        if(($newsTo != "") && $newsTo >= $now){ 
+        ?>
+            <div class='new-item'><?php echo $this->__("new"); ?></div>
+        <?php }
+        }?>
+        <?php 
+        if (($specialprice && ($special_from_date <= $now) && ($special_to_date >= $now || $special_to_date =="" ))){?>
+            <div class='sale-item'>
+                <span><?php
+                //$saleof= abs(($specialprice/($_product->getPrice()))*100-100);?>
+                <?php   //print_r(floor($saleof)); ?></span><?php echo $this->__("sale");?>
+            </div>
+        <?php } ?>
+<a href="#" class=""> 
+<?php
+    echo $_helper->productAttribute($_product, $_img, 'image');    
+?>
+</a>
+</div>
+<?php } ?>
+
+<?php if( count($this->getGalleryImages()) >= 1){?>   
+<div class="wrap-slide-item">
+    <div class="inner">
+        <div class="slide-item">
+            <ul class="list-item">
+                <?php foreach ($this->getGalleryImages() as $_image): ?>
+                <?php if($_image->getFile() == $_product->getImage()):?>
+                <li>
+                    <a class="cloud-zoom-gallery actived"rel="useZoom: 'vt_cloudzoom', smallImage: '<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(350, 420); ?>'"
+                        href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile()); ?>"
+                        title="<?php echo $this->htmlEscape($_image->getLabel()) ?>"> 
+                        <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(60,72); ?>"
+                            alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>"
+                            title="<?php echo $this->htmlEscape($_image->getLabel()) ?>" width="60" height="72" />
+                    </a>
+                </li>
+                <?php 
+                endif;
+                endforeach; 
+                ?>
+                <?php foreach ($this->getGalleryImages() as $_image):
+                if($_image->getFile() != $_product->getImage()):    ?>
+                <li>
+                    <a class="cloud-zoom-gallery" rel="useZoom: 'vt_cloudzoom', smallImage: '<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(350,420); ?>'"
+                        href="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile()); ?>"
+                        title="<?php echo $this->htmlEscape($_image->getLabel()) ?>"> 
+                        <img src="<?php echo $this->helper('catalog/image')->init($this->getProduct(), 'thumbnail', $_image->getFile())->resize(60,72); ?>"
+                            alt="<?php echo $this->htmlEscape($_image->getLabel()) ?>"
+                            title="<?php echo $this->htmlEscape($_image->getLabel()) ?>" width="60" height="72" />
+                    </a>
+                </li>
+                <?php 
+                endif;
+                endforeach; 
+                ?>
+            </ul>
+            <div class="box-nav"><a class="prev" href="#">Prev</a> <a class="next" href="#">Next</a></div>
+        </div>
+    </div>
+   
+</div>
+ <?php }?>
+<script type="text/javascript">// <![CDATA[
+   jQuery(document).ready(function($) {
+       $('.slide-item .list-item').owlCarousel({
+        items: 4,
+           itemsCustom: [ 
+            [0,2], 
+            [480,2], 
+            [768,3], 
+            [992,3], 
+            [1200,4] 
+           ],
+           pagination: false,
+           slideSpeed : 800,
+            afterAction: function (e) {
+              if(this.$owlItems.length > this.options.items){
+                  $('.slide-item .box-nav').show();
+              }else{
+                  $('.slide-item .box-nav').hide();
+              }
+           }            
+               });
+           $('.slide-item .box-nav .prev').on('click', function(e){
+           e.preventDefault();
+           $('.slide-item .list-item').trigger('owl.prev');
+           });
+           $('.slide-item .box-nav .next').on('click', function(e){
+           e.preventDefault();
+           $('.slide-item .list-item').trigger('owl.next');
+        });
+   });
+   // ]]>
+</script>
+
+<script type="text/javascript">   
+    /*jQuery(".slide-item").jCarouselLite({
+        btnNext: ".wrap-slide-item .next",
+        btnPrev: ".wrap-slide-item .prev",
+        visible: 4,
+        start: 0,
+        circular: true,
+        speed: 300,
+      
+    }); */
+
+    jQuery(document).ready(function($){        
+        $('.cloud-zoom, .cloud-zoom-gallery').CloudZoom();  
+
+        $('.fancybox-item').each(function(){
+            url = $(this).attr('href');
+            urlcur = $('#popup-image').attr('href');
+            if( url == urlcur ){
+                $(this).removeClass("fancybox-image");
+            }
+        });        
+
+        $('a.cloud-zoom-gallery').bind('click', function(){
+            $('#popup-image').attr('href', $(this).attr('href'));
+            $('.fancybox-item').addClass("fancybox-image");
+            $('.fancybox-item').each(function(){
+                url = $(this).attr('href');
+                urlcur = $('#popup-image').attr('href');
+                if( url == urlcur ){                 
+                    $(this).removeClass("fancybox-image");
+                }
+            });
+            
+        });         
+        
+        $('.cloud-zoom-gallery').each(function(){           
+            $(this).bind('click', function(){
+                var parent = $(this);
+                $('.cloud-zoom-gallery').each(function(){
+                    $('.cloud-zoom-gallery').removeClass('actived');
+                });
+                parent.addClass('actived');
+            });
+        });
+        $(".fancybox-image").fancybox({
+            prevEffect      : 'none',
+            nextEffect      : 'none',
+            closeBtn        : true,
+            closeClick : true,
+            nextClick  : true,
+            mouseWheel : false, 
+             
+        });
+    });
+</script>

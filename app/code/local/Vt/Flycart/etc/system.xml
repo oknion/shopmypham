@@ -1,0 +1,305 @@
+<?xml version="1.0"?>
+<config>
+	<sections>		
+		<flycart>
+            <label>VT Advanced Ajax Cart</label>
+            <tab>vt</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>220</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+            	<general translate="label">
+					<label>General</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enabled>
+							<label>Enable Ajax Cart</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enabled>	
+						<effect>
+							<label>Add to Cart Effect</label>
+							<frontend_type>select</frontend_type>
+							<source_model>flycart/adminhtml_system_config_source_addeffect</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</effect>
+						<visible_top_cart>
+							<label>Visible Top Cart</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</visible_top_cart>
+					</fields>	
+				</general>	
+				<qtyupdate translate="label">
+					<label>Qty Ajax Update Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>20</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<category_page>
+							<label>Qty Ajax Update On Catalog Page</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>							
+						</category_page>
+						<product_page>
+							<label>Qty Ajax Update On Product Page</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>35</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</product_page>
+						<cart_block>
+							<label>Qty Ajax Update On Cart Sidebar</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>45</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cart_block>
+						<cart_page>
+							<label>Qty Ajax Update On Cart Page</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>55</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cart_page>
+						<crosssell>
+							<label>Qty Ajax Update On Cross-sell</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>65</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</crosssell>
+					</fields>
+				</qtyupdate>
+				<!--<custom_cart>
+                    <label>Custom Cart Block</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>					
+                        <dom>
+                            <label>Custom Cart Block ID/Class</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Please enter the custom cart block ID or Class name</comment>
+                        </dom>
+                        <html>
+                            <label>Custom Cart Reload Format</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>80</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+							<comment>Format text can contain variable:<![CDATA[ <br/> ]]> <![CDATA[{cart_total}]]> - Cart total<![CDATA[ <br/>{cart_qty}]]> - Cart quantity</comment>
+                        </html>
+                    </fields>
+                </custom_cart>-->
+				<ajaxloader translate="label">
+					<label>Ajax Loading Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>40</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>																	
+						<loadingimage translate="label">
+                            <label>Ajax Loading Image</label>
+                            <frontend_type>image</frontend_type>
+                            <backend_model>adminhtml/system_config_backend_image</backend_model>
+                            <upload_dir config="system/filesystem/media" scope_info="1">flycart/config</upload_dir>
+                            <base_url type="media" scope_info="1">flycart/config</base_url>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </loadingimage>       
+						<!--<loadingimagealign translate="label">
+                            <label>Loading Image Alignment</label>
+                            <frontend_type>select</frontend_type>
+							<source_model>flycart/adminhtml_system_config_source_alignment</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+                        </loadingimagealign>	
+						<bgcolor>
+							<label>Background Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>e.g. "ffffff", "000" </comment>
+							<validate>color</validate>
+						</bgcolor>						
+						<bordercolor>
+							<label>Border Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>40</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>e.g. "ffffff", "000" </comment>
+							<validate>color</validate>
+						</bordercolor>						
+						<width>
+							<label>Window Width</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>In pixel</comment>
+						</width>						
+						<height>
+							<label>Window Height</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>In pixel</comment>
+						</height>						
+						<text>
+							<label>Ajax Loading Text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>75</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</text>	-->					
+					</fields>
+				</ajaxloader>
+				<!--<confirm_window translate="label">
+					<label>Confirmation Window Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>50</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<show_window>
+							<label>Show Confirmation Window</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</show_window>
+						<auto_hide_window>
+							<label>Auto Hide Window</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>in seconds</comment>
+						</auto_hide_window>
+						<redirect_to>
+							<label>Redirect Customer to</label>
+							<frontend_type>select</frontend_type>
+							<source_model>flycart/adminhtml_system_config_source_redirect</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</redirect_to>
+						<shopping_button_color>
+							<label>Continue Shopping Button Color</label>
+							<frontend_type>select</frontend_type>
+							<source_model>flycart/adminhtml_system_config_source_color</source_model>
+							<sort_order>25</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</shopping_button_color>
+						<cart_button_color>
+							<label>Cart/Checkout Button Color</label>
+							<frontend_type>select</frontend_type>
+							<source_model>flycart/adminhtml_system_config_source_color</source_model>
+							<sort_order>35</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cart_button_color>
+						<bgcolor>
+							<label>Background Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>45</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>e.g. "ffffff", "000" </comment>
+							<validate>color</validate>
+						</bgcolor>
+						<width>
+							<label>Window Width</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>55</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>In pixel</comment>
+						</width>
+						<border_size>
+							<label>Border Size</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>65</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>In pixel</comment>
+						</border_size>
+						<bordercolor>
+							<label>Border Color</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>75</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>e.g. "ffffff", "000" </comment>
+							<validate>color</validate>
+						</bordercolor>
+					</fields>		
+				</confirm_window>	-->		
+            </groups>	
+		</flycart>    				
+	</sections>
+</config>

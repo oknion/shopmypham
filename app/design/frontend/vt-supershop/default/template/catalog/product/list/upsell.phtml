@@ -1,0 +1,150 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php 
+$limit = count($this->getItemCollection()->getItems());
+$_helper = $this->helper('catalog/output'); ?>
+<?php if(count($this->getItemCollection()->getItems())): ?>
+
+<div id="upsell_pro" class="products-grid">  
+    <div class="inner">
+        <div class="title">
+            <span><?php echo $this->__('Upsell Products'); ?></span>            
+        </div>
+        <div class="box-nav"><a class="prev" href="#">Prev</a> <a class="next" href="#">Next</a></div>
+        <div class="container-slider">  
+            <div class="list-item">
+        <?php $this->resetItemsIterator() ?>
+        <?php for($_i=0; $_i< $limit; $_i++): ?>
+            <?php for($_j=0; $_j < $limit; $_j++): ?>
+                <?php if($_product=$this->getIterableItem()): ?>
+                <?php 
+                
+                $now = date("Y-m-d");
+                $newsFrom= substr($_product->getData('news_from_date'),0,10);
+                $newsTo=  substr($_product->getData('news_to_date'),0,10);
+                $specialprice = Mage::getModel('catalog/product')->load($_product->getId())->getSpecialPrice(); 
+                $id_img = rand();
+                ?>                
+                    <div  class="item">
+                        <?php   
+                        if($newsFrom != ''){                            
+                        if (($now>=$newsFrom && $now<=$newsTo)||($now>=$newsFrom && $newsTo =='')){  ?>
+                            <div class='new-item'><?php echo "new"; ?></div>
+                        <?php }
+                        }else{
+                        if(($newsTo != "") && $newsTo >= $now){ 
+                        ?>
+                            <div class='new-item'><?php echo "new"; ?></div>
+                        <?php }
+                        }?>
+                        <?php 
+                        if (($specialprice && ($special_from_date <= $now) && ($special_to_date >= $now || $special_to_date =="" ))){?>
+                            <div class='sale-item'>
+                                <span><?php
+                                $saleof= abs(($specialprice/($_product->getPrice()))*100-100);?>
+                                <?php   print_r(floor($saleof)); ?>%</span><span><?php echo $this->__("off");?></span>
+                            </div>
+                        <?php } ?>  
+                        <div class="item-wrap">
+                            <div class="item-image">   
+                                <a class="product-image" href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>">
+                                <img class="first_image" src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(270,270); ?>" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /> 
+                                </a>
+                                <div class="item-btn">
+                                  <div class="box-inner">
+                                    <?php if ($this->helper('wishlist')->isAllow()) : ?>
+                                       <a title="<?php echo $this->__('Add to wishlist') ?>" href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php //echo $this->__('Add to Wishlist') ?></a>
+                                    <?php endif; ?>                                   
+                                   <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+                                    <a title="<?php echo $this->__('Add to compare') ?>" href="<?php echo $_compareUrl ?>" class="link-compare"><?php //echo $this->__('Add to Compare') ?></a>
+                                    <?php endif; ?>
+									<span class="qview"><a href="<?php echo $_product->getProductUrl() ?>" ></a></span>
+                                    </div>
+                                </div> 
+                                 <?php if($_product->isSaleable()): ?>
+                                     <a title="<?php echo $this->__('Add to cart') ?>" class="btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><?php echo $this->__('Add to Cart') ?></a>
+                                 <?php else: ?>
+                                     <a href="#" class="availability out-of-stock"><?php echo $this->__('Out of stock') ?></a>
+                                 <?php endif; ?>
+                            </div>   
+                               
+                            <div class="pro-info">
+                                <div class="pro-inner">
+                                   <div class="pro-title product-name"><a href="<?php echo $_product->getProductUrl() ?>"><?php echo $this->escapeHtml($_product->getName()) ?></a></div>    
+                                   <div class="pro-content">                                                       
+                                        <?php //echo $this->getReviewsSummaryHtml($_product,'short',true) ?>
+                                        <div class="wrap-price"> 
+                                        <?php echo $this->getPriceHtml($_product, true) ?> 
+                                        </div>
+                                   </div>
+                                </div>                                                                        
+                            </div>
+                            
+                        </div><!--end item wrap -->
+                    </div>  <!--end item-->
+
+                <?php endif; ?>
+            <?php endfor; ?>                    
+        <?php endfor; ?>
+            </div>
+        </div>           
+    </div>
+</div> 
+<?php endif ?>
+<script type="text/javascript">// <![CDATA[
+   jQuery(document).ready(function($) {
+       $('#upsell_pro .list-item').owlCarousel({
+        items: 3,
+           itemsCustom: [ 
+            [0,1], 
+            [480,1], 
+            [768,2], 
+            [992,3], 
+            [1200,3] 
+           ],
+           pagination: false,
+           slideSpeed : 800,
+           addClassActive: true,  
+   afterAction: function (e) {
+      if(this.$owlItems.length > this.options.items){
+          $('#upsell_pro .box-nav').show();
+      }else{
+          $('#upsell_pro .box-nav').hide();
+      }
+   }            
+       });
+   $('#upsell_pro .box-nav .prev').on('click', function(e){
+   e.preventDefault();
+   $('#upsell_pro .list-item').trigger('owl.prev');
+   });
+   $('#upsell_pro .box-nav .next').on('click', function(e){
+   e.preventDefault();
+   $('#upsell_pro .list-item').trigger('owl.next');
+   });
+   });
+   // ]]>
+</script>

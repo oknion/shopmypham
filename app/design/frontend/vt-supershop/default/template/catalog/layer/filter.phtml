@@ -1,0 +1,16 @@
+<ol>
+<?php foreach ($this->getItems() as $_item): 
+    $label = explode("_", $_item->getLabel()); ?>
+    <li <?php if($label[1] != ''){ echo "class='licolor'"; } ?>>
+        <?php if ($_item->getCount() > 0): ?>
+        <a  <?php if($label[1] == '#ffffff'){ echo "class='itemcolor colorwhite'"; } else { if($label[1] != ''){ echo "class='itemcolor' style='background:".$label[1]."'" ; } } ?> href="<?php echo $this->urlEscape($_item->getUrl()) ?>">
+        	<?php echo $_item->getLabel() ?>
+        </a>
+        <?php else: echo $_item->getLabel() ?>
+        <?php endif; ?>
+        <?php if ($this->shouldDisplayProductCount() && $label[1]==''): ?>
+        (<?php echo $_item->getCount() ?>)
+        <?php endif; ?>
+    </li>
+<?php endforeach ?>
+</ol>

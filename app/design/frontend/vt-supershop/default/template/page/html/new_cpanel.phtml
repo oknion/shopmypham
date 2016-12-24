@@ -1,0 +1,38 @@
+<?php
+/*------------------------------------------------------------------------
+ # Copyright (c) 2014 VnThemePro Company. All Rights Reserved.
+ # @license - Copyrighted Commercial Software
+ # Author: VnThemePro Company
+ # Websites: http://www.vnthemepro.com
+-------------------------------------------------------------------------*/
+
+global $var_vttheme;  
+// Include cpanel
+if( $var_vttheme->getParam('showCpanel') ) { ?>
+<div id="settings-box">
+		<h2>Panel Tool</h2>	
+        <div class="box-store">
+        	<h3>Store View and Color</h3>
+        	<?php echo $this->getChildHtml('store_switcher');?>
+        </div>
+        <div class="box-layout">
+			<h3>Layout</h3>
+			<select name="cpitem_layoutfb" class="cpitem_layoutfb">
+				<option value="1" <?php echo ($var_vttheme->getParam('layoutfb')=='1')?' selected="selected"':'';?>>Full Width</option>
+				<option value="2" <?php echo ($var_vttheme->getParam('layoutfb')=='2')?' selected="selected"':'';?>>Boxed</option>
+			</select>
+		</div>
+		<!--<div class="box-menu">
+			<h3>Menu</h3>
+			<select name="cpitem_menutype" class="cpitem_menutype">
+				<option value="mega" <?php //echo ($var_vttheme->getParam('menutype')=='mega')?' selected="selected"':'';?>>Mega Menu</option>
+				<option value="css" <?php //echo ($var_vttheme->getParam('menutype')=='css')?' selected="selected"':'';?>>Main Menu</option>
+			</select>
+		</div>-->
+		<!--<div class="box-btncp">
+			<button class="btn-cpdefault">Default</button>
+			<button class="btn-apply">Apply</button>
+		</div>-->	
+		<div id="btn_toggle" class="btnclose"></div>
+</div>
+<?php } ?>

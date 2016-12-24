@@ -1,0 +1,25 @@
+<?php
+/**
+ *Flycart Extension
+ *
+ * PHP versions 4 and 5
+ *
+ * LICENSE: This source file is subject to version 3.0 of the PHP license
+ * that is available through the world-wide-web at the following URI:
+ * http://www.store.vt.com/license.txt.  If you did not receive a copy of
+ * the PHP License and are unable to obtain it through the web, please
+ * send a note to admin@vt.com so we can mail you a copy immediately.
+ *
+ * @category   Magento Extensions
+ * @package    Vt_Flycart
+ * @author     Vt <sales@vt.com>
+ * @copyright  2007-2011 Vt
+ * @license    http://www.store.vt.com/license.txt
+ * @version    1.0.1
+ * @link       http://www.store.vt.com
+ */
+ ?>
+<?php $helper = Mage::helper('flycart'); ?>
+<a title="<?php echo $helper->__('Decrement'); ?>" class="flycart-qty-btn flycart-qty-change flycart-qty-change-left" href="javascript:ajaxcartConfig.qtyProductDown(#product_id)"><?php echo $helper->__('down')?></a>
+#flycart_qty_input
+<a title="<?php echo $helper->__('Increment'); ?>" class="flycart-qty-btn flycart-qty-change flycart-qty-change-right" href="javascript:ajaxcartConfig.qtyProductUp(#product_id)"><?php echo $helper->__('up')?></a>

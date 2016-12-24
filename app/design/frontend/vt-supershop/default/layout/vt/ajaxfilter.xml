@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<layout version="1.0.0">
+  <catalog_category_view>
+    <reference name="head">
+      <action method="addJs"><script>vt/jquery/jquery.js</script></action>
+      <action method="addJs"><script>vt/jquery/jquery-noconflict.js</script></action>
+      <action method="addJs"><script>vt/jquery-ui/js/jquery-ui.min.js</script></action>
+      <action method="addCss" ifconfig="ajaxfilter_cfg/general/isenabled"><stylesheet>vt/ajaxfilter/css/vt-ajaxfilter.css</stylesheet></action>
+      <action method="addCss" ifconfig="ajaxfilter_cfg/general/isenabled">
+        <script>vt/ajaxfilter/css/jquery-ui-1.8.23.custom.css</script>
+      </action>
+    </reference>
+    <reference name="content">
+      <block type="ajaxfilter/ajax" name="ajaxfilter" template="vt/ajaxfilter/script.phtml" output="toHtml" />
+    </reference>
+  </catalog_category_view>
+  <catalogsearch_result_index>
+    <reference name="head">
+      <action method="addJs"><script>vt/jquery/jquery.js</script></action>
+      <action method="addJs"><script>vt/jquery/jquery-noconflict.js</script></action>
+      <action method="addJs"><script>vt/jquery-ui/js/jquery-ui.min.js</script></action>
+      <action method="addCss" ifconfig="ajaxfilter_cfg/general/isenabled"><stylesheet>vt/ajaxfilter/css/vt-ajaxfilter.css</stylesheet></action>
+      <action method="addCss" ifconfig="ajaxfilter_cfg/general/isenabled">
+        <script>vt/ajaxfilter/css/jquery-ui-1.8.23.custom.css</script>
+      </action>
+    </reference>
+    <reference name="footer">
+      <block type="ajaxfilter/ajax" name="ajaxfilter" template="vt/ajaxfilter/script.phtml" output="toHtml" />
+    </reference>
+  </catalogsearch_result_index>
+</layout>

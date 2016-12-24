@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Vt_Supershop>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>0.1.0</version>
+    </Vt_Supershop>
+  </modules>
+</config>

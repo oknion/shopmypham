@@ -1,0 +1,24 @@
+<?php if($_GET['layoutdetails']):?>
+<?php $colunmdt=$_GET['layoutdetails']?>
+<?php else:?>
+<?php $colunmdt=Mage::getStoreConfig('supershop_cfg/general/product_page_view');?>
+<?php endif;?>
+<?php
+switch ($colunmdt) {
+    case 'one_column':
+        require '1column.phtml';
+        break;
+    case 'two_columns_left':
+        require '2columns-left.phtml';
+        break;
+    case 'two_columns_right':
+        require '2columns-right.phtml';
+        break;
+    case 'three_columns':
+       require '3columns.phtml';
+        break;
+    default:
+        require '2columns-left.phtml';
+        break;
+}
+?>

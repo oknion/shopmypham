@@ -1,0 +1,445 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+
+global $var_vttheme;
+$home = '';
+	$l = $var_vttheme->getParam('layout_home');
+    if($l==2){
+    	$home ='home-02';
+    }elseif($l==1){
+    	$home = 'home';
+    }elseif($l==3){
+    	$home = 'home-03';
+    }
+ 
+?>
+<div class="new-feauture">Feauture
+	<?php $cururl=Mage::helper("core/url")->getCurrentUrl();
+    $cururl=substr($cururl,0, strpos($cururl,'?')); ?>
+	<div class="count-listing-page">
+		<div class="row">
+			<ul class="col-sm-12">
+				<li class="header-feau">Set Column Listing Page</li>
+				<li><a href="<?php echo $cururl.'?prorow=2'?>">2 columns</a></li>
+				<li><a href="<?php echo $cururl.'?prorow=3'?>">3 columns</a></li>
+				<li><a href="<?php echo $cururl.'?prorow=4'?>">4 columns</a></li>
+				<li><a href="<?php echo $cururl.'?prorow=6'?>">6 columns</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="layout-details">
+		<div class="row">
+			<ul class="col-sm-12">
+				<li class="header-feau">Set Layout Products page</li>
+				<li><a href="<?php echo $cururl.'?layoutdetails=one_column'?>">1 Colunm</a></li>
+				<li><a href="<?php echo $cururl.'?layoutdetails=two_columns_left'?>">2 Columns Left</a></li>
+				<li><a href="<?php echo $cururl.'?layoutdetails=two_columns_right'?>">2 Columns Right</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- Is layout home -->
+<?php if($home=='home'){ ?>
+<div class="header-container">
+	<div class="header">   
+		<div class="box-header-mobile-01">
+			<div class="wrap-link">
+				<button class="btn-account"><?php echo $this->__("Account");?></button>
+				<?php echo $this->getChildHtml('topLinks') ?> 
+			</div>
+			<button class="btn-addtocart"></button>             
+		</div>
+		<script type="text/javascript">                
+			jQuery(document).ready(function($){  
+				cur_width = $( window ).width();
+				if(cur_width < 767){
+					//$('.box-header-02 .block-search').remove();
+					$('.box-header-mobile-01').append('<div class="wrap-block-cl"></div>');
+					$('.box-header-mobile-01 .wrap-block-cl').html($('.box-header-01 .wrap-block-cl').html());
+					$('.box-header-02 .wrap-block-cl').remove();					
+
+					$(".wrap-link .links").hide();
+					$('.wrap-link button').click(function(){
+						$(".wrap-link .links").slideToggle("fast");
+					}); 
+					$(".wrap-block-cl > .block > ul").hide();
+					$('.wrap-block-cl > .block-language > div').click(function(){
+						$(".wrap-block-cl > .block-language > ul").slideToggle("fast");
+					});
+					$('.wrap-block-cl > .block-currency > div').click(function(){
+						$(".wrap-block-cl > .block-currency > ul").slideToggle("fast");
+					});
+
+					$(".box-header-02 .block-cart .block-content").hide();
+					 $('.box-header-02 .block-cart .block-title').click(function(){
+						$(".box-header-02 .block-cart .block-content").slideToggle("fast");
+					});
+				}
+			});
+		</script>
+		<div class="box-header-01">
+			<div class="container">
+				<div class="row">
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('toplink-left')->toHtml();?>
+					<div class="box-right wrap-block-cl">							     
+						<?php echo $this->getChildHtml('currency') ?>
+						<?php echo $this->getChildHtml('store_language') ?> 								
+					</div>
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('toplink-right')->toHtml();?>					
+					<div class="box-my-account box-right">
+						<span><?php echo $this->__("My account"); ?></span>
+						<?php echo $this->getChildHtml('topLinks') ?> 
+					</div>
+				</div>
+			</div>
+		</div>	
+		<div class="box-header-02">
+			<div class="container">
+				<div class="row">
+					<a class="logo" href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>                    
+					<?php echo $this->getChildHtml('cart_sidebar') ?>				
+					<?php  echo $this->getChildHtml('searchboxpro'); ?>
+					<?php  //echo $this->getChildHtml('topSearch'); ?>
+				</div>
+			</div>
+		</div> 
+		
+
+		<div id="vt_menu">               
+			<div class="container">
+				<div class="row">  
+					<div class="box-menu-01 col-lg-3"><?php echo $this->getChildHtml('megaMenu'); ?></div>
+					<div class="box-menu-02 col-lg-9"><?php echo $this->getChildHtml('topMenu'); ?></div>	
+				</div>
+			</div>  
+		</div>
+		<div id="mobile-nav">
+			<?php echo $this->getChildHtml('mobiMenu'); ?>
+		</div>               
+	</div>
+</div>
+
+<?php } ?>
+<!--end layout home-->
+
+<!-- Is layout home 2 -->
+<?php if($home=='home-02'){ ?>
+<div class="header-container">
+	<div class="header">   
+		<div class="box-header-mobile-01">
+			<div class="wrap-link">
+				<button class="btn-account"><?php echo $this->__("Account");?></button>
+				<?php echo $this->getChildHtml('topLinks') ?> 
+			</div>
+			<button class="btn-addtocart"></button>             
+		</div>
+		<script type="text/javascript">                
+			jQuery(document).ready(function($){  
+				cur_width = $( window ).width();
+				if(cur_width < 767){
+					//$('.box-header-02 .block-search').remove();
+					$('.box-header-mobile-01').append('<div class="wrap-block-cl"></div>');
+					$('.box-header-mobile-01 .wrap-block-cl').html($('.box-header-02 .wrap-block-cl').html());
+					$('.box-header-02 .wrap-block-cl').remove();					
+
+					$(".wrap-link .links").hide();
+					$('.wrap-link button').click(function(){
+						$(".wrap-link .links").slideToggle("fast");
+					}); 
+					$(".wrap-block-cl > .block > ul").hide();
+					$('.wrap-block-cl > .block-language > div').click(function(){
+						$(".wrap-block-cl > .block-language > ul").slideToggle("fast");
+					});
+					$('.wrap-block-cl > .block-currency > div').click(function(){
+						$(".wrap-block-cl > .block-currency > ul").slideToggle("fast");
+					});
+
+					$(".box-header-02 .block-cart .block-content").hide();
+					 $('.box-header-02 .block-cart .block-title').click(function(){
+						$(".box-header-02 .block-cart .block-content").slideToggle("fast");
+					});
+				}
+			});
+		</script>
+		<?php /*
+		<div class="box-header-01">
+			<div class="container">
+				<div class="row">
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('toplink-left')->toHtml();?>
+					<div class="box-right wrap-block-cl">							     
+						<?php echo $this->getChildHtml('currency') ?>
+						<?php echo $this->getChildHtml('store_language') ?> 								
+					</div>
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('toplink-right')->toHtml();?>					
+					<div class="box-my-account box-right">
+						<span><?php echo $this->__("My account"); ?></span>
+						<?php echo $this->getChildHtml('topLinks') ?> 
+					</div>
+				</div>
+			</div>
+		</div>	
+		*/?>
+		<div class="box-header-02">
+			<div class="container">
+				<div class="row">
+					<a class="logo" href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>                    
+								
+						<?php  echo $this->getChildHtml('searchboxpro'); ?>
+						<?php  //echo $this->getChildHtml('topSearch'); ?>	
+					<div class="wrap-item-mobile">					
+						<div class="box-my-account box-right">
+							<span class="my-account-icon">&nbsp</span>
+							<?php echo $this->getChildHtml('topLinks') ?> 
+						</div>
+						<div class="box-right wrap-block-cl">							     
+							<?php echo $this->getChildHtml('currency') ?>
+							<?php echo $this->getChildHtml('store_language') ?> 								
+						</div>
+						
+						<?php echo $this->getChildHtml('cart_sidebar') ?>	
+					</div>
+				</div>
+			</div>
+		</div> 
+		
+
+		<div id="vt_menu">               
+			<div class="container">
+				<div class="row">  
+					<div class="box-menu-01 col-lg-3"><?php echo $this->getChildHtml('megaMenu'); ?></div>
+					<div class="box-menu-02 col-lg-9"><?php echo $this->getChildHtml('topMenu'); ?></div>	
+				</div>
+			</div>  
+		</div>
+		<div id="mobile-nav">
+			<?php echo $this->getChildHtml('mobiMenu'); ?>
+		</div>               
+	</div>
+</div>
+<?php } ?>
+<!--End home 02-->
+
+<!-- Is layout home 03 -->
+<?php if($home=='home-03'){ ?>
+<div class="header-container">
+	<div class="header">   
+		<div class="box-header-mobile-01">
+			<div class="wrap-link">
+				<button class="btn-account"><?php echo $this->__("Account");?></button>
+				<?php echo $this->getChildHtml('topLinks') ?> 
+			</div>
+			<button class="btn-addtocart"></button>             
+		</div>
+		<script type="text/javascript">                
+			jQuery(document).ready(function($){  
+				cur_width = $( window ).width();
+				if(cur_width < 767){
+					//$('.box-header-02 .block-search').remove();
+					$('.box-header-mobile-01').append('<div class="wrap-block-cl"></div>');
+					$('.box-header-mobile-01 .wrap-block-cl').html($('.box-header-01 .wrap-block-cl').html());
+					$('.box-header-02 .box-menu-04').html($('.box-header-02 .search-header').html());
+					//$('.box-header-mobile-01 .btn-addtocart').html($('.box-header-02 .cart-header').html());
+					$('.box-header-02 .wrap-block-cl').remove();					
+
+					$(".wrap-link .links").hide();
+					$('.wrap-link button').click(function(){
+						$(".wrap-link .links").slideToggle("fast");
+					}); 
+					$(".wrap-block-cl > .block > ul").hide();
+					$('.wrap-block-cl > .block-language > div').click(function(){
+						$(".wrap-block-cl > .block-language > ul").slideToggle("fast");
+					});
+					$('.wrap-block-cl > .block-currency > div').click(function(){
+						$(".wrap-block-cl > .block-currency > ul").slideToggle("fast");
+					});
+
+					$(".box-header-02 .block-cart .block-content").hide();
+					 $('.box-header-02 .block-cart .block-title').click(function(){
+						$(".box-header-02 .block-cart .block-content").slideToggle("fast");
+					});
+				}
+			});
+		</script>
+		
+		<div class="box-header-02">
+			<div class="container">
+				<div class="row">
+					<div class="box-menu-02 col-lg-3 col-md-3 col-sm-3 col-xs-12">
+						<div class="row">
+							<a class="logo" href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a>                    
+						</div>
+					</div>
+					
+					<div id="vt_menu"> 
+						<div class="box-menu-03 col-lg-9 col-md-9 col-sm-9 col-xs-12">
+							<?php echo $this->getChildHtml('megaMenu'); ?>
+							<div class="search-header" >
+								<?php echo $this->getChildHtml('searchboxpro'); ?>
+							</div>
+							<div class="cart-header">
+							<?php echo $this->getChildHtml('cart_sidebar') ?>	
+							</div>
+						</div>	
+					</div>
+					
+				</div>
+			</div>
+		</div> 
+		<div class="box-header-01">
+			<div class="container">
+				<div class="row">
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('toplink-left')->toHtml();?>
+					<div class="box-right wrap-block-cl">							     
+						<?php echo $this->getChildHtml('currency') ?>
+						<?php echo $this->getChildHtml('store_language') ?> 								
+					</div>
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('toplink-right')->toHtml();?>					
+					<div class="box-my-account box-right">
+						<span><?php echo $this->__("My account"); ?></span>
+						<?php echo $this->getChildHtml('topLinks') ?> 
+					</div>
+				</div>
+			</div>
+		</div>	
+
+		
+		<div id="mobile-nav">
+			<?php echo $this->getChildHtml('mobiMenu'); ?>
+			<div class="search-header1" style="display:none" >
+			<?php  echo $this->getChildHtml('topSearch'); ?>
+			</div>
+		</div>               
+	</div>
+</div>
+<?php } ?>
+<!--end layout home 03-->
+
+<?php
+include (dirname(__FILE__).'/new_cpanel.phtml');
+?>
+<div class="popup-new-bgr">
+	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('popup-newletter')->toHtml(); ?>
+</div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	var shownewft=<?php echo Mage::getStoreConfig('supershop_cfg/general/show_newft');?>;
+	if(shownewft==0){jQuery('.new-feauture').css('display','none')}
+	var checkhomepage='<?php echo Mage::getBlockSingleton('page/html_header')->getIsHomePage()?>';
+	var showpp=<?php echo Mage::getStoreConfig('supershop_cfg/general/show_popup');?>;
+	if((showpp==1)&&(checkhomepage=='1')&&(jQuery(window).width()>767))
+	{
+	var ever = getCookie("ever");
+	    if(ever)
+	    {
+	        jQuery('.popup-new-bgr').hide();
+	        return false;
+	    }
+	    else{
+	    	jQuery('.popup-new-bgr').show();
+	    }
+		jQuery('.close-popup').click(function(){
+			jQuery('.popup-new-bgr').hide();
+		});
+		jQuery('.popup-newletter a').click(function(){
+			jQuery(this).toggleClass('active');
+		})
+	}
+});
+</script>
+
+<?php 
+if($var_vttheme->getParam('menu_ontop')==1){
+?>
+<script type="text/javascript">                
+ 	jQuery(document).ready(function($){
+	var ishome="<?php echo Mage::getSingleton('cms/page')->getIdentifier(); ?>";	
+	var layout = "<?php echo $var_vttheme->getParam('layout_home'); ?>";	
+	var w = $(window).width(); 
+	if(ishome == 'home'){
+		menu_offset_top = 500;
+	}
+
+	
+
+	if ((ishome != 'home') ||(ishome != 'home-04')){
+		menu_offset_top = $('#box-header').outerHeight();
+	}
+
+	if(ishome == 'home-02'){
+		menu_offset_top = 422;
+	}
+
+	if(ishome != 'home-02' && layout == 2){
+		menu_offset_top = $('#vt_menu').outerHeight();
+	}
+
+	if(layout == 3){
+		menu_offset_top = $('.box-header-02').outerHeight();
+	}
+
+	function processScroll() {
+
+		var scrollTop = $( window ).scrollTop();
+
+		if ( scrollTop >= menu_offset_top) {			
+			if(layout == 3){
+				$('.box-header-02').addClass('subnav-fixed');
+			}else{
+				$('.mega-nav').hide();
+				$('#vt_menu').addClass('subnav-fixed');
+			}
+
+		} else if (scrollTop <= menu_offset_top) {		
+			if(layout == 3){
+				$('.box-header-02').removeClass('subnav-fixed');
+			}else{				
+				$('#vt_menu').removeClass('subnav-fixed');
+				if(ishome != "" && w >= 1024){
+					$('.mega-nav').show();
+				}
+			}
+					
+		}
+
+	}
+
+	//processScroll();
+
+	$( window ).scroll(function() {
+
+		processScroll();
+
+	}); 
+	
+ 	if(w < 1024){     	
+ 		$(".mega-nav").css('display','none');
+ 	}
+});
+</script>
+<?php } ?>

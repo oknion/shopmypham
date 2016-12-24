@@ -1,0 +1,81 @@
+<?php if($this->isEnabled): ?>
+<script type="text/javascript">
+	var data = "";
+	var active = false;
+	jQuery(function($){
+		if($('body').find('#Vt_Ajaxfilter').attr('id') != 'Vt_Ajaxfilter'){
+		$('body').prepend('<div id="Vt_Ajaxfilter" style="display:none"><div class="process"><img src="<?php echo $this->loadingImage ?>"><div><?php echo $this->loadingText ?></div></div><div class="bg"></div></div>');}
+
+		<?php if($this->ajaxLayered): ?>
+		$(".block-layered-nav a").live('click',function(e){
+			ajaxFilter($(this).attr('href'));
+			e.preventDefault();
+		});
+		<?php endif; ?>
+
+
+		<?php /*if($this->ajaxToolbar): ?>
+		$('.category-products .toolbar a').live('click',function(e){
+			var url=$(this).attr('href');
+			ajaxFilter(url);
+			e.preventDefault();
+		});
+		$('.category-products .toolbar select').removeAttr('onchange');
+		$('.category-products .toolbar select').live('change',function(){
+			var url=$(this).val(); alert(url);
+			ajaxFilter(url);
+			e.preventDefault();
+		});
+		<?php endif;*/ ?>
+
+
+	});
+
+<?php if($this->ajaxPrice || $this->ajaxLayered): ?>
+function ajaxFilter(url) {
+    if (!active) {
+        active = true;
+        jQuery(function($) {
+            oldUrl = url;
+            $('#Vt_Ajaxfilter .bg').height('100%');
+            $('#Vt_Ajaxfilter').fadeIn(300);
+            try {
+                $.ajax({
+                    url: url,
+                    dataType: 'json',
+                    type: 'post',
+                    data: data,
+                    success: function(data) {
+						//callback();
+                        if (data.viewpanel) {
+                            if ($('.block-layered-nav')) {
+                                $('.block-layered-nav').empty();
+                                $('.block-layered-nav').append(data.viewpanel)
+                            }
+                        }
+                        if (data.productlist) {
+                            $('.category-products').empty();
+                            $('.category-products').append(data.productlist)
+                        }
+                        var hist = url.split('?');
+                        if(window.history && window.history.pushState){
+							window.history.pushState('GET', data.title, url);
+						}
+                        $('body').find('.toolbar select').removeAttr('onchange');
+                        $('#Vt_Ajaxfilter .bg').height('100%');
+                        $('#Vt_Ajaxfilter').fadeOut(300);
+                    }
+                })
+            } catch (e) {}
+        });
+        active = false
+    }
+    return false
+}
+<?php endif; ?>
+
+function callback(){
+	// return;
+}
+</script>
+<?php endif; ?>

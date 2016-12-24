@@ -1,0 +1,110 @@
+/********** < Navigation */
+
+#nav { display: inline-block;  }
+#nav li { position:relative; text-align:left; }
+#nav li.over { z-index:999999; }
+#nav a{ display: block;}
+#nav > li > a{ position: relative; }
+#nav > li > a:before,
+#nav > li.active > a:before,
+#nav > li.parent > a:before{	
+}
+#nav > li.parent > a> span{
+	position: relative;
+}
+#nav > li.over > a > span{
+	color: #f37020;
+}
+#nav > li > a.over,
+#nav > li > a.over span:before,
+#nav > li > a:hover { }
+#nav span { display:block; cursor:pointer; white-space:nowrap; }
+#nav li ul span {white-space:normal;  }
+#nav > li.parent > a > span{ padding: 0 16px !important; position: relative; }
+#nav > li > a > span{ line-height: 35px;  }
+#nav ul {
+	background: #434343;
+}
+#nav ul li:hover{}
+#nav > li.active > a,
+#nav ul li:hover > a{ color: #f37020; }
+#nav ul li.parent li a { }
+
+/* 0 Level */
+#nav > li > a > span{ font-size: 150%; text-transform: uppercase; }
+
+#nav li { float:left; }
+#nav > li.active > a { }
+#nav a span{ padding: 0 16px; }
+
+/* 1st Level */
+#nav ul li,
+#nav ul li.active { float:none; margin:0;  }
+#nav ul li.last { }
+#nav ul a{
+	 border-bottom: 1px solid #676767;
+	 color: #fff;
+	 font-weight: bold;
+}
+#nav ul a,
+#nav ul a:hover { float:none; padding: 11px 14px; background:none;  }
+#nav ul li a { font-weight:normal !important; }
+#nav ul li a span{
+	font-weight: bold; position: relative;
+}
+#nav ul li.parent a span{
+	position: relative;
+}
+
+#nav > li.parent:hover > ul{
+	top: 46px;
+	opacity: 1;
+	visibility: visible;
+	filter: alpha( opacity=100 ) ;
+	-webkit-transition:all 0.3s ease-in-out 0s;
+	-moz-transition:all 0.3s ease-in-out 0s;
+	-o-transition:all 0.3s ease-in-out 0s;
+    -ms-transition:all 0.3s ease-in-out 0s;
+}
+
+#nav ul li > a > span:after{
+	
+}
+#nav ul li > a:hover > span:after{
+	
+}
+/* 2nd Level */
+#nav ul,
+#nav div { 
+	position:absolute; z-index: 999999;
+	top:100px; 	
+	opacity: 0;
+	filter: alpha( opacity=0 ) ;
+	visibility: hidden;		
+}
+#nav div ul { position:static; width:auto; border:none; }
+
+/* 3rd+ Level */
+#nav ul ul,
+#nav ul div { top:-1px; }
+
+#nav ul li a { }
+#nav ul li a:hover { }
+#nav ul li a,
+#nav ul li a:hover { }
+#nav ul span,
+#nav ul li.last li span { padding:0;  }
+
+/* Show menu */
+#nav li ul.shown-sub,
+#nav li div.shown-sub { 
+	left:0; z-index:999999;
+	opacity: 1;
+	filter: alpha( opacity=100 ) ;
+	visibility: visible;
+ }
+#nav li .shown-sub ul.shown-sub,
+#nav li .shown-sub li div.shown-sub,
+#nav ul li.parent ul{ left:176px !important; }
+
+/********** Navigation > */

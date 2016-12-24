@@ -1,0 +1,69 @@
+<!--<div class="page-title">
+    <h1><?php //echo $this->__('Blog'); ?></h1>
+</div>-->
+<?php $posts = $this->getPosts(); ?>
+<?php include_once 'helper.php'; ?>
+<div id="messages_product_view">
+    <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?> 
+    <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?> 
+</div>
+
+ <?php //echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+<?php foreach ($posts as $key=>$post): ?>
+    <?php                   
+    $short_content = strip_tags($post->getShortContent());
+    $images = ImageHelper::getInlineImages($post->getShortContent());
+    ?>
+   
+    <div class="postWrapper list">
+        <a href="<?php echo $post->getAddress(); ?>">
+        <?php if(!empty($images)){ ?>
+        <?php echo $images[0]; ?>    
+        <?php } ?>
+        </a>
+        <div class="inner-content">
+            <div class="wrap-title">
+                <div class="posdate">
+                    <?php
+                    $_ct= new Zend_Date($post->getCreatedTime()); ?>
+                    <span class="d-day"><?php echo $_ct->toString('d');  ?></span>
+                    <span class="d-month-y"><?php echo $_ct->toString('MMM'); ?><?php echo ' '.$_ct->toString('Y'); ?></span>
+                </div>    
+                <div class="blog-col-right">
+                    <h2>
+                        <a class="postTitle" href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a>
+                    </h2>
+                    <div class="wrap-item"> 
+                        <div class="pby">               
+                        <?php echo $this->__("Posted By"); ?> <?php echo $post->getUser(); ?>
+                        </div>
+                        <?php if ($this->getCommentsEnabled() && $post->getCommentCount() > 0): ?>
+                            <a href="<?php echo $post->getAddress(); ?>#commentBox" ><?php echo $post->getCommentCount(); ?>  Comments</a>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
+            <div class="postContent">
+                <?php echo Mage::helper('core/string')->truncate($short_content,300); ?>
+            </div> 
+            <div class="wrap-rm">
+                <a class="link-rm" href="<?php echo $post->getAddress(); ?>"><?php echo $this->__("Read more"); ?></a>
+            </div>                    
+        </div>
+
+    </div>
+<?php endforeach; ?> 
+<div class="blog-toolbar">
+ <?php echo $this->getChildHtml('aw_blog_comments_toolbar'); ?>
+  <script type="text/javascript">                
+        jQuery(document).ready(function($){
+           $('.selected-limiter').click(function(){
+            $('.select-limiter').toggleClass('current-item');
+            });
+            $('.selected-order').click(function(){
+                $('.select-order').toggleClass('current-item');
+            });
+        });
+    </script>
+<?php //$this->getPages(); ?>
+</div>

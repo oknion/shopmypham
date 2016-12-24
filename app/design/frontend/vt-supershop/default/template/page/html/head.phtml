@@ -1,0 +1,195 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+include (dirname(dirname(__FILE__)).'/vt/vt_prepar.php');
+global $var_vttheme;
+?>
+<meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+<meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
+<title><?php echo $this->getTitle() ?></title>
+<meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+<meta name="keywords" content="<?php echo htmlspecialchars($this->getKeywords()) ?>" />
+<meta name="robots" content="<?php echo htmlspecialchars($this->getRobots()) ?>" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
+<link rel="icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="shortcut icon" href="<?php echo $this->getFaviconFile(); ?>" type="image/x-icon" />
+<link rel="author" href="https://plus.google.com/u/0/115574600366412828612/"/>
+<!--[if lt IE 7]>
+<script type="text/javascript">
+//<![CDATA[
+    var BLANK_URL = '<?php echo $this->helper('core/js')->getJsUrl('blank.html') ?>';
+    var BLANK_IMG = '<?php echo $this->helper('core/js')->getJsUrl('spacer.gif') ?>';
+//]]>
+</script>
+<![endif]-->
+<?php echo $this->getCssJsHtml() ?>
+<?php echo $this->getChildHtml() ?>
+<?php echo $this->helper('core/js')->getTranslatorScript() ?>
+<?php echo $this->getIncludes() ?>
+<script type="text/javascript">
+//<![CDATA[
+	var SKIN_URL = '<?php echo $var_vttheme->skinurl();?>';
+	var TMPL_NAME = '<?php echo $var_vttheme->template;?>';
+	var TMPL_COOKIE = <?php echo json_encode($paramscookie); ?>;
+//]]>
+</script>
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl('css/theme-'.$var_vttheme->getParam('theme_color').'.css') ?>" type="text/css" />
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl('css/vt-responsive.css'); ?>" type="text/css" />
+<?php 
+if( isset($_SERVER['HTTPS'] )  && $_SERVER['HTTPS'] != 'off' ) {
+    $http = 'https';
+} else {
+    $http = 'http';
+}
+$googleWebFont = $var_vttheme->getParam('googleWebFont');
+$googleWebFontTargets = $var_vttheme->getParam('googleWebFontTargets');
+if ( $googleWebFont != "" && $googleWebFont != "" ) {
+	$googleWebFontFamily = str_replace(" ","+",$googleWebFont);
+	$googleWebFontFamily = strpos($googleWebFontFamily, ':')?substr($googleWebFontFamily, 0, strpos($googleWebFontFamily, ':')):$googleWebFontFamily;
+?>
+
+<link rel="stylesheet" type="text/css" href="<?php echo $http;?>://fonts.googleapis.com/css?family=<?php echo $googleWebFontFamily; ?>" media="all" />
+<?php }
+?>
+<style type="text/css">
+<?php
+// Body Font size
+echo 'body{	
+		font-size:'.$var_vttheme->getParam('fontsize').';	
+	}';	
+if( trim($var_vttheme->getParam('font_name'))!='' )
+	echo '
+		body{
+			font-family:'.$var_vttheme->getParam('font_name').';	
+		}';
+if( trim($googleWebFontTargets)!="" )
+	echo $googleWebFontTargets.'{
+			font-family:'.$googleWebFont.', serif !important;
+		}';
+	echo '
+		body.'.$var_vttheme->template.'{	
+			color:'.$var_vttheme->getParam('textcolor').' ;			
+		}
+		body.'.$var_vttheme->template.'{	
+			background-color:'.$var_vttheme->getParam('bgcolor').' ;
+		}
+		a{	
+			color:'.$var_vttheme->getParam('linkcolor').' ;	
+		}
+		a:focus,
+		a:hover{	
+			color:'.$var_vttheme->getParam('linkcolorhover').' ;	
+		}			
+		';
+
+?>
+</style>
+
+
+<?php //if( $var_vttheme->getParam('showCpanel') ) { ?>	
+	<!--<script type="text/javascript" src="<?php //echo $this->getSkinUrl('js/minicolors/jquery.miniColors.min.js') ?>"></script>-->
+<?php //} ?>
+<script type="text/javascript">
+//<![CDATA[
+	jQuery(function($){ 
+	//style for select option, radio...
+		
+		/*$(".quick-info .chk-remember input[type='checkbox']").uniform(); 
+		$("#narrow-by-list input[type='checkbox']").uniform();*/
+
+		if(navigator.userAgent.indexOf("Firefox")!=-1){
+	        $("#product-options-wrapper select").uniform();  
+	        $('.form-search select').uniform();      
+	        $('#poll-answers input[type="radio"]').uniform(); 
+	        $('.box-layout select').uniform();
+	        $('.box-menu select').uniform();
+	    }
+	    else if(navigator.userAgent.indexOf("Opera")!=-1){
+	         $("#product-options-wrapper select").uniform();  
+	        $('.form-search select').uniform();      
+	        $('#poll-answers input[type="radio"]').uniform(); 
+	        $('.box-layout select').uniform();  
+	        $('.box-menu select').uniform();
+	    }
+	    else if(navigator.userAgent.indexOf("Chrome") != -1){
+	        $("#product-options-wrapper select").uniform();  
+	        $('.form-search select').uniform();      
+	        $('#poll-answers input[type="radio"]').uniform(); 
+	        $('.box-layout select').uniform();
+	        $('.box-menu select').uniform();
+	    }
+	    else if(navigator.userAgent.indexOf("Safari")!=-1){
+	        $("#product-options-wrapper select").uniform();  
+	        $('.form-search select').uniform();      
+	        $('#poll-answers input[type="radio"]').uniform(); 
+	        $('.box-layout select').uniform();   
+	        $('.box-menu select').uniform();
+	    }
+	
+	});
+//]]>
+</script>
+<script type="text/javascript">
+	var uA = navigator.userAgent;
+	if(uA.indexOf('Trident') != -1 && uA.indexOf('rv:11') != -1){	  
+		document.write('<link rel="stylesheet" href="<?php echo $this->getSkinUrl('css/ie11.css'); ?>" type="text/css" />');
+	}
+	if(navigator.userAgent.indexOf("MSIE")!=-1){
+		var Browser = {
+			IsIe: function () {
+				return navigator.appVersion.indexOf("MSIE") != -1;
+			},
+			Navigator: navigator.appVersion,
+			Version: function() {
+				var version = 999; // we assume a sane browser
+				if (navigator.appVersion.indexOf("MSIE") != -1)
+					// bah, IE again, lets downgrade version number
+					version = parseFloat(navigator.appVersion.split("MSIE")[1]);
+				return version;
+			}
+		};
+
+		if (Browser.IsIe && Browser.Version() >= 9) {
+			document.write('<link rel="stylesheet" href="<?php echo $this->getSkinUrl('css/ie.css'); ?>" type="text/css" />');
+		}else{
+			document.write('<link rel="stylesheet" href="<?php echo $this->getSkinUrl('css/ie8.css'); ?>" type="text/css" />');
+		}
+    }
+    else if(navigator.userAgent.indexOf("Firefox")!=-1){
+        name = "Firefox";
+    }
+    else if(navigator.userAgent.indexOf("Opera")!=-1){
+        name = "Opera";
+    }
+    else if(navigator.userAgent.indexOf("Chrome") != -1){
+        document.write('<link rel="stylesheet" href="<?php echo $this->getSkinUrl('css/chrome.css'); ?>" type="text/css" />');
+    }
+    else if(navigator.userAgent.indexOf("Safari")!=-1){
+        document.write('<link rel="stylesheet" href="<?php echo $this->getSkinUrl('css/safari.css'); ?>" type="text/css" />');
+    }
+    if (!("ontouchstart" in document.documentElement)) {
+	document.documentElement.className += " no-touch";
+	}
+</script>

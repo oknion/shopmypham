@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+	<config>
+		<acl>
+			<resources>
+				<admin>
+					<children>
+						<system>
+							<children>
+								<config>
+									<children>
+										<supershop_cfg translate="title" module="supershop">
+											<title>VT Supershop Section</title>
+											<sort_order>150</sort_order>
+										</supershop_cfg>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+		<!--<menu>
+			<supershop translate="title" module="supershop">
+				<title>Vt Supershop Config</title>
+				<sort_order>100</sort_order>
+				<depends>
+					<module>Vt_Supershop</module>
+				</depends>
+				<children>
+					<supershop translate="title" module="supershop">
+						<title>Vt Supershop</title>
+						<action>adminhtml/system_config/edit/section/supershop_cfg</action>
+						<sort_order>0</sort_order>
+					</supershop>
+				</children>
+			</supershop>
+		</menu>	-->	
+	</config>

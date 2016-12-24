@@ -1,0 +1,48 @@
+<?php
+/*------------------------------------------------------------------------
+ # VT Products - Version 1.0
+ * Copyright (C) 2013 The VT Theme. All Rights Reserved.
+ * @license - GNU/GPL, http://www.gnu.org/licenses/gpl.html
+ * Author: VT Theme
+ * Websites: http://www.vttheme.com
+-------------------------------------------------------------------------*/
+$categoryList = $this->getListCategoriesFilter();
+$uniqued = rand().time();
+$cat = Mage::getModel('catalog/category')->load($this->product_category);
+$subcats = $cat->getChildren();
+$url=Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'upgrade/'.$cat->getName();
+$staticBlock = $this->stactic_block_name;
+$staticBlock1 = $this->stactic_block_name1;
+?>
+<div class="up-grade">
+<div id="box-cate-left" class="box-cate-left">
+	<div class="box-info">		
+		<div class="title">
+			<?php echo $cat->getName(); ?>
+		</div>
+			<div id="list-category<?php echo $uniqued; ?>" class="list-category">
+				<ul>
+			<?php foreach(explode(',',$subcats) as $subCatid):?>
+            <?php $_category = Mage::getModel('catalog/category')->load($subCatid);?>
+				<li>
+					<a class="linkItem" href="<?php echo $_category->getURL(); ?>">
+						<?php echo $_category->getName(); ?>
+					</a>
+				</li>
+			<?php endforeach;?>
+				</ul>
+			</div>
+	</div>
+	<div id="parent-category<?php echo $uniqued; ?>" class="box-slide-image">
+		<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($staticBlock1)->toHtml();
+		   ?>
+	</div>
+</div>	
+<div id="vt_slider<?php echo $uniqued; ?>" class="block vt-slider" style="overflow:visible">
+	<div class="slider-inner">    	
+	    <div class="container-slider">
+		   <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($staticBlock)->toHtml();
+		   ?>
+		</div>
+	</div>
+</div>

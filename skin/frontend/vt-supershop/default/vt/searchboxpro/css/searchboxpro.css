@@ -1,0 +1,73 @@
+.serachbox-pro-pretext, 
+.serachbox-pro-posttext{
+	margin: 10px 0;
+	width: 100%;
+}
+.serachbox-pro-posttext{
+	/*margin:20px 0;*/
+}
+
+.vt-serachbox-pro .vt-searchbox-popular{
+	width: 83%;
+	float: left;
+	margin-bottom: 10px;
+}
+.vt-serachbox-pro .vt-searchbox-advanced{
+	width: 17%;
+	float: right;
+	text-align: right;
+	margin-bottom: 10px;
+}
+.vt-serachbox-pro .vt-searchbox-advanced a{
+	text-decoration: none;
+	color: #4A629F;
+	font-size: 12px;
+}
+.vt-serachbox-pro .vt-searchbox-advanced a:hover{
+	text-decoration: underline;
+}
+.vt-serachbox-pro .vt-searchbox-popular .vt-searchbox-popular-title{
+	display: inline-block;
+	float: left;
+	font-size: 16px;
+	color: #4a629f;
+	font-weight: bold;
+	margin-right: 15px;
+}
+.vt-serachbox-pro .vt-searchbox-keyword-list {
+    float: left;
+}
+.vt-serachbox-pro .vt-searchbox-keyword-list > li{
+	float: left;
+	line-height: 210%;
+}
+.vt-serachbox-pro .vt-searchbox-keyword-list > li a {
+    float: left;
+	margin-right: 10px;
+	color:#686868;
+	font-size:14px;
+	text-decoration: none;
+}
+.vt-serachbox-pro .vt-searchbox-keyword-list > li a:hover {
+	text-decoration: underline;
+}
+
+.vt-serachbox-pro .vt-searchbox-keyword-list > li a.vt-searchbox-more {
+    float: left;
+	margin-right: 10px;
+	color:#4A629F;
+	font-size:12px;
+	text-decoration: none;
+}
+.vt-serachbox-pro .vt-searchbox-keyword-list > li a.vt-searchbox-more:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+
+
+
+.vt-serachbox-pro select option {
+    padding: 5px 10px;
+}
+

@@ -1,0 +1,8 @@
+<?php
+$categoryList = $this->getListCategoriesFilter(); 
+if ($categoryList) {
+?>
+<a href="<?php echo $categoryList[0]->getURL(); ?>">
+    <img src="<?php echo $categoryList[0]->getImageUrl();?>" alt="<?php echo $categoryList[0]->getName(); ?>" />
+</a>
+<?php }?>

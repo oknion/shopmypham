@@ -1,0 +1,296 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<vt translate="label" module="supershop">
+            <label>7UPTHEME.COM</label>
+            <sort_order>206</sort_order>
+        </vt>
+	</tabs>
+	<sections>
+		<supershop_cfg  translate="label" module="supershop">                    
+		<label>VT Supershop Config</label>
+		<tab>vt</tab>
+		<frontend_type>text</frontend_type>
+		<sort_order>1</sort_order>
+		<show_in_default>1</show_in_default>
+		<show_in_website>1</show_in_website>
+		<show_in_store>1</show_in_store>            
+			<groups>
+				<general translate="label"> 
+				<expanded>1</expanded>
+				<label>General settings</label>
+				<frontend_type>text</frontend_type>
+				<sort_order>1</sort_order>
+				<show_in_default>1</show_in_default>
+				<show_in_website>1</show_in_website>
+				<show_in_store>1</show_in_store>
+					<fields>	
+					<!-- Begin Layout-->
+						<layout_styles translate="label">
+							<label>Layout Style</label>
+							<frontend_type>select</frontend_type>
+							<source_model>supershop/system_config_source_listLayoutStyles</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</layout_styles>
+						<layout_heading translate="label">
+							<label>Layout</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</layout_heading>								
+						<layout_home translate="label">
+							<label>Layout Home</label>
+							<frontend_type>select</frontend_type>
+							<source_model>supershop/system_config_source_listLayoutHome</source_model>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</layout_home>
+										  
+						<color translate="label">
+							<label>Color style</label>
+							<frontend_type>select</frontend_type>
+							<source_model>supershop/system_config_source_listColor</source_model>
+							<sort_order>3</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Please select color style for fontend.</comment>
+						</color>
+
+					<!-- End Layout-->	
+					
+					<!-- Begin Body-->
+						<body_heading translate="label">
+							<label>Text Settings</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>4</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</body_heading>							
+						<body_font_family translate="label">
+							<label>Font Base</label>
+							<frontend_type>select</frontend_type>
+							<source_model>supershop/system_config_source_listBodyFont</source_model>
+							<sort_order>5</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</body_font_family>						
+						<body_font_size translate="label">
+							<label>Font Size</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>6</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</body_font_size>
+						<google_font translate="label">
+							<label>Google Font</label>
+							<frontend_type>select</frontend_type>
+							<source_model>supershop/system_config_source_listGoogleFont</source_model>
+							<sort_order>7</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</google_font>	
+						<google_font_targets translate="label">
+							<label>Google Font Elements</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>8</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Tags will be applied with Google font with separate ","</comment>
+						</google_font_targets>										
+																					
+						<body_link_color translate="label">
+							<label>Link Color</label>
+							<frontend_type>text</frontend_type>
+							<validate>color</validate> 
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Please enter color link for fontend.</comment>
+						</body_link_color>	
+						<body_link_hover_color translate="label">
+							<label>Hover Link Color</label>
+							<frontend_type>text</frontend_type>
+							<validate>color</validate> 
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Please enter color link hover for fontend.</comment>
+						</body_link_hover_color>						
+						<body_text_color translate="label">
+							<label>Text Color</label>
+							<frontend_type>text</frontend_type>
+							<validate>color</validate> 
+							<sort_order>12</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Please color text for fontend.</comment>
+						</body_text_color>	
+						<body_background_color translate="label">
+							<label>Background Color</label>
+							<frontend_type>text</frontend_type>
+							<validate>color</validate> 
+							<sort_order>13</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Please background color for fontend.</comment>
+						</body_background_color>
+								
+									
+					<!-- End Body-->
+					
+					
+					<body_heading translate="label">
+					<label>show popup newletter, Setting count colunm listing, Layout product view</label>
+						<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+						<sort_order>19</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</body_heading>			
+					<product_page_view translate="label">
+						<label>Set Layout Details Page</label>
+						<frontend_type>select</frontend_type>
+						<source_model>supershop/system_config_source_listLayoutDetailsPage</source_model>
+						<sort_order>20</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</product_page_view>
+					<Count_colunm_listing translate="label">
+						<label>Set Count Colunm Listing Page</label>
+						<frontend_type>select</frontend_type>
+						<source_model>supershop/system_config_source_ListColunmListing</source_model>
+						<sort_order>20</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+					</Count_colunm_listing>
+					<show_popup translate="label">
+						<label>Show popup newletter</label>
+						<frontend_type>select</frontend_type>
+						<source_model>adminhtml/system_config_source_yesno</source_model>
+						<sort_order>20</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>show popup newletter on homepage.</comment>
+					</show_popup >		
+					<show_newft translate="label">
+						<label>Show New Feauture</label>
+						<frontend_type>select</frontend_type>
+						<source_model>adminhtml/system_config_source_yesno</source_model>
+						<sort_order>20</sort_order>
+						<show_in_default>1</show_in_default>
+						<show_in_website>1</show_in_website>
+						<show_in_store>1</show_in_store>
+						<comment>show new feuture.</comment>
+					</show_newft >
+					<!-- Begin Menu-->
+						<menu_style_heading translate="label">
+							<label>Menu</label>
+							<frontend_model>adminhtml/system_config_form_field_heading</frontend_model>
+							<sort_order>21</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</menu_style_heading>	
+						<menu_styles translate="label">
+							<label>Menu Style</label>
+							<frontend_type>select</frontend_type>
+							<source_model>supershop/system_config_source_listMenuStyles</source_model>
+							<sort_order>22</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</menu_styles>	
+						<menu_ontop translate="label">
+							<label>Menu On Top</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>23</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>keep menu on top when scroll frontend.</comment>
+						</menu_ontop>
+						<responsive_menu translate="label">
+							<label>Mobile Menu Type</label>
+							<frontend_type>select</frontend_type>
+							<source_model>supershop/system_config_source_listResMenuStyles</source_model>
+							<sort_order>24</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</responsive_menu>						
+					<!-- End Menu-->			
+											
+					</fields>					   
+				</general>
+				
+				<!--<detail_supershop translate="label">
+	            	<label>Product Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>                    	
+						
+					</fields>
+	            </detail_supershop>-->	          				
+				<advanced translate="label">
+	            	<label>Advanced Settings</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                    	<show_cpanel translate="label">
+							<label>Show Cpanel</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<!--<comment>Show/Hide cPanel on the frontend</comment>-->
+						</show_cpanel>				
+					</fields>
+	            </advanced>			   
+			   
+			    <product_information translate="label">
+					<label>Theme Information</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>6</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<comment>
+					<![CDATA[
+						<p>Author   : <a target="_blank" title="7-Up" href="http://demo.vnthemepro.com/vt_supershop/intro/index.html">demo.vnthemepro.com</a></p>
+						<p>Version  : 1.0.0</p>
+					]]>
+					</comment>							
+				</product_information>
+			</groups>
+		</supershop_cfg>
+	</sections>
+</config>

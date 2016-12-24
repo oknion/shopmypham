@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+		<reference name="head">
+			<action method="addItem"><type>js_css</type><name>vt/owl-carousel/owl.carousel.css</name></action>
+            <action method="addItem"><type>js_css</type><name>vt/owl-carousel/owl.transitions.css</name></action>
+            <action method="addJs"><script>vt/owl-carousel/owl.carousel.min.js</script></action>
+		</reference>
+	</default>
+</layout> 

@@ -1,0 +1,130 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+global $var_vttheme; 
+$home = '';
+	$l = $var_vttheme->getParam('layout_home');
+    if($l==2){
+    	$home ='home-02';
+    }else{
+    	$home = 'home';
+    }
+	
+?>
+
+ <div class="container">
+    <div class="row">
+        <div class="row">
+	        <div class="inner-top">	 
+	        	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	        		<div class="container">
+						<div class="row">
+					        <div class="row">    
+								<div class="box-link-01 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	        					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('box-link-01')->toHtml();?>
+					        	</div>	
+							</div>
+						</div>
+					</div>
+	        	</div>
+				<?php if($home == 'home-02'){ ?>
+				<div id="table-footer">
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('table-footer')->toHtml();?>
+				</div>
+				<div style="clear:both;"></div>
+				<?php } ?>
+		        <div class="block block-ma col-lg-3 col-md-3 col-sm-3 col-xs-12">       	
+		        	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block-my-account')->toHtml();?>
+		        </div>
+		        <div class="block block-od col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	        	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block-help')->toHtml();?>
+	        	</div>
+	        	<div class="block block-in col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	        	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block-further-information')->toHtml();?>
+	        	</div>
+	        	<div class="block block-cu col-lg-3 col-md-3 col-sm-3 col-xs-12">
+	        	<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('block-contact-us-footer')->toHtml();?>
+	        	</div>
+				
+	        	<?php if($home != 'home-02'){
+				echo $this->getLayout()->createBlock('cms/block')->setBlockId('box-newlletter')->toHtml();
+				}?>
+	        </div>	
+			<?php if ( $var_vttheme->getParam('showontop') == 1 ){?>
+				<a id="gototop" href="#" title="Go to Top"><?php echo $this->__('Top'); ?></a>
+			<?php	} ?>
+		</div>
+	</div>
+</div>	
+<?php if($home != 'home-02'){ ?>
+<div class="inner-bottom">		
+	<div class="container">
+		<div class="row">
+	        <div class="row">    
+				<div class="block col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('box-link-02')->toHtml();?>
+					
+				</div>	
+				
+			</div>
+		</div>
+	</div>
+</div>
+<?php } ?>
+<div class="box-add">
+	<div class="container">
+		<div class="row">
+	        <div class="row">
+				<address class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+				<?php echo $this->getCopyright() ?> Designed by <a title="Visit VnThemePro.Com!" href="http://themeforest.net/user/7-Up/portfolio?WT.ac=portfolio_item&WT.z_author=7-Up">7-Up</a>
+				</address>
+				<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('payment')->toHtml();?>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function($){  
+		$("#gototop").hide();
+		$(function () {
+			var wh = $(window).height();
+			var whtml =  $(document).height();			
+			$(window).scroll(function () {				
+				if ($(this).scrollTop() > whtml/10) {
+					$('#gototop').fadeIn();
+				} else {
+					$('#gototop').fadeOut();
+				}
+			});
+			$('#gototop').click(function () {
+				$('body,html').animate({
+					scrollTop: 0
+				}, 800);
+				return false;
+			});
+		});
+	});
+</script>
+

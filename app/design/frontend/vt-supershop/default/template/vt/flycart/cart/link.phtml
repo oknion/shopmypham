@@ -1,0 +1,43 @@
+<div id="fly-cart-link" onmouseover="showCartPopup()" onmouseout="hideCartPopup(this, event)" class="cart-link-title">
+<?php
+	$qty = Mage::getSingleton('checkout/cart')->getItemsQty();
+	$cart_link = Mage::helper('flycart')->__('My Cart');
+	if($qty == 1){$cart_link = Mage::helper('flycart')->__('My Cart (%s item)',$qty);}
+	else if($qty > 1) {$cart_link = Mage::helper('flycart')->__('My Cart (%s items)',$qty);}
+?>
+	<span><?php echo $cart_link ?></span>
+</div>
+<div id="fly-cart-content" onmouseover="showCartPopup()" onmouseout="hideCartPopup(this, event)" style="display:none">
+    <?php $_cartQty = $this->getSummaryCount() ?>
+    <div class="cart-link-content">
+    <?php $_items = $this->getRecentItems() ?>
+    <?php if(count($_items)): ?>
+        <p class="cart-link-subtitle"><?php echo $this->__('Your shopping cart item(s)') ?></p>
+        <ul id="cart-top-link" class="flycart-products-list">
+        <?php foreach($_items as $_item): ?>
+            <?php echo $this->getItemHtml($_item) ?>
+        <?php endforeach; ?>
+        </ul>
+        <script type="text/javascript">decorateList('cart-sidebar', 'none-recursive')</script>
+    <?php else: ?>
+        <p class="empty"><?php echo $this->__('You have no items in your shopping cart.') ?></p>
+    <?php endif ?>
+    </div>
+	    <?php if ($_cartQty>0): ?>
+        <div class="summary">
+            <p class="subtotal">
+                <span class="label"><?php echo $this->__('Cart Subtotal:') ?></span> <?php echo Mage::helper('checkout')->formatPrice($this->getSubtotal()) ?>
+                <?php if ($_subtotalInclTax = $this->getSubtotalInclTax()): ?>
+                    <br />(<?php echo Mage::helper('checkout')->formatPrice($_subtotalInclTax) ?> <?php echo Mage::helper('tax')->getIncExcText(true) ?>)
+                <?php endif; ?>
+            </p>
+        </div>
+    <?php endif ?>
+    <?php if($_cartQty && $this->isPossibleOnepageCheckout()): ?>
+    <div class="actions">
+        <?php echo $this->getChildHtml('extra_actions') ?>
+        <button type="button" title="<?php echo $this->__('Checkout') ?>" class="button" onclick="setLocation('<?php echo $this->getCheckoutUrl() ?>')"><span><span><?php echo $this->__('Checkout') ?></span></span></button>
+    </div>
+	<?php endif; ?>
+	<div class="fly-cart-link-close"><a class="close-link" onclick="$('fly-cart-content').toggle(); return false;">Close</a></div>
+</div>

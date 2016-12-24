@@ -1,0 +1,109 @@
+<?php
+/*------------------------------------------------------------------------
+ # VT Search Box Pro - Version 1.0
+ # Copyright (c) 2013 vnthemepro Company. All Rights Reserved.
+ # @license - Copyrighted Commercial Software
+ # Author: vnthemepro Company
+ # Websites: http://www.vnthemepro.com
+-------------------------------------------------------------------------*/
+
+$cat_list = $this->getCategories();
+$options = $this->getConfigObject();
+$uniqued = rand().time();?>
+<?php if( $options->isenabled == 1 ){?>
+	<div class="advanced-search">
+	<?php if( $options->pretext != ""){ ?>
+	<div class="serachbox-pro-pretext">
+		<?php echo $options->pretext;?>
+	</div>
+	<?php }?>	
+		<div class="inner-box">
+			<form id="search_mini_form" action="<?php echo $this->helper('catalogsearch')->getResultUrl() ?>" method="get">
+				<div class="form-search">
+					<?php $categorySearchHelper = $this->helper('searchboxpro'); ?>
+					<div class="dropdown-cate">
+						<span class="cat-search"><?php echo $this->__('All Categories') ?></span>
+						<div class="wrap-scrollbar">
+							<div  class="scrollbar">
+								<ul>
+									<li class="level-0"><?php echo $this->__("All Categories");?>
+										<input type="hidden" name="id<?php echo $uniqued; ?>" value="">
+									</li>
+									<?php foreach ( $cat_list as $cat):?>		
+										<?php if($cat['label'] == "Blog" || $cat['label'] == "Contact" || $cat['label'] == "About us"){
+											continue;
+										}?>								
+										<li class="level-<?php echo $cat['level'];?>">
+											<?php echo trim($cat['label']); ?>
+											<input type="hidden" name="id<?php echo $uniqued; ?>" value="<?php echo $cat['value']; ?>">
+										</li>
+									<?php endforeach;?>	
+								</ul>
+							 </div>
+						 </div>
+					 </div>
+					<input class="cat-value" type="hidden" name="<?php echo $categorySearchHelper->getCategoryParamName() ?>" value="">
+					<input size="30" id="search" type="text" name="<?php echo $this->helper('catalogSearch')->getQueryParamName() ?>" class="input-text" onfocus="if(this.value=='I am shopping for...') this.value='';" onblur="if(this.value=='') this.value='I am shopping for...';" value="I am shopping for..."  />
+					<button type="submit" title="<?php echo $this->__('Search') ?>" class="button form-button"><span><span><?php echo $this->__('Search') ?></span></span></button>
+					<div id="search_autocomplete" class="search-autocomplete"></div>
+			
+				</div>
+			</form>
+		</div>
+		<?php if($options->posttext!= ''){ ?>
+			<div class="serachbox-pro-posttext">
+				<?php echo $options->posttext;?>
+			</div>
+		<?php }?>
+	</div>
+	<div class="search-engine-o"></div>
+<?php }?>
+<script type="text/javascript">	
+jQuery( document ).ready(function($) {
+		$('.scrollbar').slimScroll({
+			width : '200px',
+			height: '200px',
+			alwaysVisible : true,
+			wheelStep: 2,
+			touchScrollStep: 50,
+		});
+		$('.scrollbar li').click(function(){
+			var x = $('input',$(this)).attr('value');
+			console.log(x);
+			$('.cat-value').val(x);
+			$('.cat-search').text($(this).text());
+		});
+		$('.wrap-scrollbar').hide();
+		$('.cat-search').click(function(){
+			$('.wrap-scrollbar').slideToggle('fast');
+		})
+		$('.wrap-scrollbar li').click(function(){
+			$('.wrap-scrollbar').slideToggle('fast');
+		})
+		$("body").click(function() {
+    		$('.wrap-scrollbar').hide();
+		});
+
+		$(".advanced-search").click(function(e) {
+		    e.stopPropagation();
+		});
+	});
+</script>
+<script type="text/javascript">	
+jQuery( document ).ready(function($) {
+	dk='I am shopping for...';
+	$('.search-engine-o').click(function(){
+		
+		if($('#search').val()!=dk)
+		{
+			$('.form-button').click();
+		}
+		else{
+		$('.search-engine-o').toggleClass('search-engine-o-post');
+		$('.search-header').toggleClass('header-zindex');
+		$('.advanced-search').toggleClass('right-post');
+		$('.wrap-scrollbar').hide();
+		}
+	});
+});
+</script>

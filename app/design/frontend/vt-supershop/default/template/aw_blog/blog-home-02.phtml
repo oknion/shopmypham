@@ -1,0 +1,125 @@
+<?php
+   /**
+    * aheadWorks Co.
+    *
+    * NOTICE OF LICENSE
+    *
+    * This source file is subject to the EULA
+    * that is bundled with this package in the file LICENSE.txt.
+    * It is also available through the world-wide-web at this URL:
+    * http://ecommerce.aheadworks.com/AW-LICENSE.txt
+    *
+    * =================================================================
+    *                 MAGENTO EDITION USAGE NOTICE
+    * =================================================================
+    * This package designed for Magento community edition
+    * aheadWorks does not guarantee correct work of this extension
+    * on any other Magento edition except Magento community edition.
+    * aheadWorks does not provide extension support in case of
+    * incorrect edition usage.
+    * =================================================================
+    *
+    * @category   AW
+    * @package    AW_Blog
+    * @version    1.2.1
+    * @copyright  Copyright (c) 2010-2012 aheadWorks Co. (http://www.aheadworks.com)
+    * @license    http://ecommerce.aheadworks.com/AW-LICENSE.txt
+    */
+   ?> 
+<?php include_once 'helper.php'; ?>
+<?php $posts = $this->getPosts(); 
+   $total = count($posts);
+   ?>
+<div class="wrap-blog-home">
+   <div id="messages_product_view">
+      <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?> 
+      <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?> 
+   </div>
+   <div class="wrap-t">
+   <div class="title"><span>LATEST FROM THE BLOG</span></div>
+   </div>
+   <div class="devn-portfolio-main">
+   <div class="wrap-blog-list">
+   <ol id="blog-list">	
+   <?php foreach($posts as $key=>$post):  ?>
+      <li class="item">
+      <div class="item-inner">
+		<div class="view view-first">
+         <?php                   
+            $short_content = strip_tags($post->getShortContent());
+            $images = ImageHelper::getInlineImages($post->getShortContent());
+            ?>
+         <?php if(!empty($images)){ ?>
+		 <div class="devn-portfolio-image">
+		<a href='#'> <?php echo $images[0]; ?>  </a>
+		 </div>
+         <a class="link-item" href="<?php echo $post->getAddress(); ?>" title="<?php echo $post->getTitle(); ?>">
+         </a>
+         <?php } ?> 
+		
+		 
+		 </div>
+         <div class="box-right">
+			<div style="clear:both;"></div>
+            <p class="blog-name"><a href="<?php echo $post->getAddress(); ?>" ><span><?php echo $post->getTitle(); ?></span></a></p>
+            <div style="clear:both;"></div>
+			<p class="wrap">
+               <span class="item-d">
+               <?php
+                  $_ct= new Zend_Date($post->getCreatedTime()); 
+                  $str = $_ct->toString('d,M,Y');
+                  echo $str;
+                  ?>
+               </span>   
+			   <?php if($post->getCommentCount()){ ?>
+               <span class="item-c"><?php echo $post->getCommentCount(); ?> Comments</span>
+               <?php }?>
+            </p>
+         </div>
+      </div> 
+      </li>
+	  <?php endforeach; ?>
+   </ol>
+   </div>
+   <div class="box-nav">
+      <a href="#" class="prev">Prev</a>
+      <a href="#" class="next">Next</a>
+   </div>
+   </div>
+   
+</div>
+<script type="text/javascript">
+   jQuery(document).ready(function($) {
+       $('.wrap-blog-home #blog-list').owlCarousel({
+           items: 3,
+           itemsCustom: [ 
+               [0, 1], 
+               [480, 1], 
+               [768, 2], 
+               [992, 3], 
+               [1200, 3] 
+           ],
+           pagination: false,
+           slideSpeed : 800,
+           addClassActive: true,
+           scrollPerPage: true,
+           afterAction: function (e) {
+               if(this.$owlItems.length > this.options.items){
+                   $('.wrap-blog-home .box-nav').show();
+               }else{
+                   $('.wrap-blog-home .box-nav').hide();
+               }
+           }
+           //scrollPerPage: true,
+       });
+       $('.wrap-blog-home .box-nav .prev').on('click', function(e){
+           e.preventDefault();
+           $('.wrap-blog-home #blog-list').trigger('owl.prev');
+       });
+       $('.wrap-blog-home .box-nav .next').on('click', function(e){
+           e.preventDefault();
+           $('.wrap-blog-home #blog-list').trigger('owl.next');
+       });
+   });
+   
+</script>

@@ -1,0 +1,109 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Store switcher template
+ *
+ * @see Mage_Core_Block_Store_Switcher
+ */
+?>
+
+<?php
+$curentStore = Mage::app()->getStore()->getName();
+?>
+<div class="store-switcher">
+    <span class="<?php echo Mage::app()->getStore()->getCode(); ?>"><?php 
+    	//echo $curentStore;  
+		if($curentStore=="English"){
+        	echo  "Supershop layout 01";
+        }
+        if($curentStore=="Brazil"){
+            echo  "Supershop layout 02";
+        }
+        if($curentStore=="French"){
+        	echo  "Supershop layout 03";
+        }
+		if($curentStore=="Argentina"){
+        	echo  "Supershop color 03";
+        }
+        if($curentStore=="German"){
+        	echo  "Supershop layout 04";
+        }
+        if($curentStore=="Spain"){
+        	echo  "Supershop color 04";
+        }
+        if($curentStore=="Sweden"){
+        	echo  "Supershop color 05";
+        }
+        if($curentStore=="Italy"){
+        	echo  "Supershop color 06";
+        }
+        if($curentStore=="Chile"){
+            echo  "Supershop color 07";
+        }
+		if($curentStore=="Hungary"){
+            echo  "Supershop color 02";
+        }
+    ?></span>
+    <ul>
+        <?php foreach ($this->getStores() as $_store): ?>
+        <li><a class="<?php echo $_store->getCode(); if($_store->getId()==$this->getCurrentStoreId()){ echo " actived";}?>" href="<?php echo $_store->getUrl('') ?>"><?php 
+        $name= $_store->getName();
+        if($name=="English"){
+        	echo  "Supershop layout 01";
+        }
+        if($name=="Brazil"){
+            echo  "Supershop layout 02";
+        }
+        if($name=="French"){
+        	echo  "Supershop layout 03";
+        }
+		if($name=="Argentina"){
+            echo  "Supershop color 03";
+        }
+        if($name=="German"){
+        	echo  "Supershop layout 04";
+        }
+        if($name=="Spain"){
+        	echo  "Supershop color 04";
+        }
+        if($name=="Sweden"){
+        	echo  "Supershop color 05";
+        }
+        if($name=="Italy"){
+        	echo  "Supershop color 06";
+        }
+         if($name=="Chile"){
+            echo  "Supershop color 07";
+        }
+		if($name=="Hungary"){
+            echo  "Supershop color 02";
+        }
+          ?></a></li>
+        <?php endforeach; ?>
+    </ul>  
+</div>

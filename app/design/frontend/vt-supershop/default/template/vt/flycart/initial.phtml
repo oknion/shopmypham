@@ -1,0 +1,105 @@
+<script type="text/javascript">
+//<![CDATA[
+	var ajaxcartConfig = null;
+    var defaultConfig = <?php echo $this->getConfig(); ?>;     
+    var defaultQtyTemp = <?php echo $this->getQtyTemplate(); ?>;
+    var cartQtyTemp = <?php echo $this->getQtyCartTemplate(); ?>;
+    var productQtyTemp = <?php echo $this->getQtyProductTemplate(); ?>;
+    var continueMessage = '<?php echo Mage::helper('flycart')->__('Continue Shopping') ?>'; 
+	<?php if(Mage::getStoreConfig('flycart/general/visible_top_cart')):?>
+	Event.observe(window, 'load', function() {
+		new Ajax.Request('<?php echo $this->getUrl('flycart/index/topcart', array('isAjax'=>1, '_secure'=>Mage::app()->getStore()->isCurrentlySecure() ? true : false))?>', {
+			onSuccess: function(transport) {
+				eval('var response = '+transport.responseText);
+				$$(".header-container .top-link-cart").each(function(s){
+					s.innerHTML = response.cart;
+				});	
+			}
+		});
+		
+	});
+	<?php endif;?>
+//]]>
+</script>
+
+<div id="flycart_confirm_window" style="display: none;" class="flycart-continue-<?php echo Mage::getStoreConfig('flycart/confirm_window/shopping_button_color') ?> flycart-checkout-<?php echo Mage::getStoreConfig('flycart/confirm_window/cart_button_color') ?>">
+	<div class="inner">
+		<p class="flycart_msg_title">
+			<span id="confirm_qty"></span>	
+			<span class="flycart_msg_x"></span>			
+			<span id="flycart_productname"></span>
+			<span id="flycart_singular" style="display: none;"><?php echo Mage::helper('flycart')->__('was') ?></span>
+			<span id="flycart_plural" style="display: none;"><?php echo Mage::helper('flycart')->__('were') ?></span>
+			<span id="confirm_addtocart_cart" class="confirm_addtocart" style="display: none;"><?php echo Mage::helper('flycart')->__('added to your cart.') ?></span>
+			<span id="confirm_addtocart_wishlist" class="confirm_addtocart" style="display: none;"><?php echo Mage::helper('flycart')->__('added to wishlist.') ?></span>
+			<span id="confirm_addtocart_compare" class="confirm_addtocart" style="display: none;"><?php echo Mage::helper('flycart')->__('added to compare products.') ?></span>
+		</p>
+		<div class="flycart_confirm_window_actions">
+		<button onclick="$('flycart_confirm_window').hide(); ajaxcartConfig.overlay.hide()" class="flycart_msg_bnt flycart_msg_bnt_cs"><span><span id="flycart_confirm_continue"><?php echo Mage::helper('flycart')->__('Continue Shopping') ?></span></span></button>
+		<button class="flycart_msg_bnt flycart_msg_bnt_ptc" onclick="setLocation('<?php echo $this->getUrl('checkout/cart'); ?>')"><span><span id="flycart_confirm_checkout"><?php echo Mage::helper('flycart')->__('Go to Shopping Cart') ?></span></span></button>
+			<?php
+				$data = array(
+					'cart' 		=> array(
+						'text' => Mage::helper('flycart')->__('Go to Shopping Cart'),
+						'onclick' => "setLocation('" . $this->getUrl('checkout/cart') . "')"),
+					'wishlist' 	=> array(
+						'text' => Mage::helper('flycart')->__('Go to Wishlist'),
+						'onclick' => "setLocation('" . $this->getUrl('wishlist') . "')"),
+					'compare' 	=>  array(
+						'text' => Mage::helper('flycart')->__('Show Compare Products'),
+						'onclick' => "$('flycart_confirm_window').hide(); ajaxcartConfig.overlay.hide();popWin('" . $this->helper('catalog/product_compare')->getListUrl() . "','compare','top:0,left:0,width=820,height=600,resizable=yes,scrollbars=yes');"),   
+				);
+			?>
+			<script type="text/javascript">
+			//<![CDATA[			
+				var _flycart_data = <?php echo Mage::helper('core')->jsonEncode($data);  ?>
+			//]]>
+			</script>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+//<![CDATA[			
+	function showCartPopup()
+	{
+		//new Effect.Appear($('fly-cart-content'));
+		new $('fly-cart-content').show();
+	}
+	function hideCartPopup(element, event)
+	{
+		element = $(element.id); 
+		var popup = $('fly-cart-content'); if (!popup) return;
+		var current_mouse_target = null;
+		if (event.toElement)
+		{
+			current_mouse_target = event.toElement;
+		}
+		else if (event.relatedTarget)
+		{
+			current_mouse_target = event.relatedTarget;
+		}
+		if (!isChildOf(element, current_mouse_target) && element != current_mouse_target)
+		{
+			if (!isChildOf(popup, current_mouse_target) && popup != current_mouse_target)
+			{
+				$('fly-cart-content').hide();
+			}
+		}
+	}
+
+	function isChildOf(parent, child)
+	{
+		if (child != null)
+		{
+			while (child.parentNode)
+			{
+				if ((child = child.parentNode) == parent)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+//]]>
+</script>
