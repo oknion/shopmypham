@@ -1,1 +1,18 @@
-/var/www/html/magento/vendor/magento/module-theme/view/frontend/web/js/view/messages.js
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+define([
+    'uiComponent',
+    'Magento_Customer/js/customer-data'
+], function (Component, customerData) {
+    'use strict';
+
+    return Component.extend({
+        initialize: function () {
+            this._super();
+
+            this.messages = customerData.get('messages').extend({disposableCustomerData: 'messages'});
+        }
+    });
+});

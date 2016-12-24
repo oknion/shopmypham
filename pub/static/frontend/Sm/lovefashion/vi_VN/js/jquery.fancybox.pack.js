@@ -1,0 +1,1 @@
+/var/www/html/magento/app/design/frontend/Sm/lovefashion/web/js/jquery.fancybox.pack.js

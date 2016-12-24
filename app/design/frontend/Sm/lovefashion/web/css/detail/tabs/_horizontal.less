@@ -1,0 +1,39 @@
+﻿.default-style{
+  .resp-accordion{
+    display: none;
+  }
+
+  .resp-tabs-list{
+    background:#ededed none repeat scroll 0 0;
+    float: left;
+    width: 100%;
+    li{
+      float: left;
+      display: block;
+      border-bottom: none;
+     font-size: 133.33%;
+     padding: 22px 17px !important;
+      color: #666;
+      cursor: pointer;
+      text-transform: capitalize;
+      font-weight: 700;
+      position: relative;
+      border-right: 1px solid #fff;
+
+      &.resp-tab-active{
+      
+      }
+    }
+  }
+
+  .resp-tabs-container{
+    clear: both;
+    .resp-tab-content{
+      display: none;
+
+      &.resp-tab-content-active{
+        display: block;
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+/var/www/html/magento/app/design/frontend/Sm/lovefashion/Magento_Wishlist/web/js/add-to-wishlist.js

@@ -1,0 +1,260 @@
+// HOME GENERAL
+.cms-index-index .page-main {
+    background:  url("../images/shadow-breacrum.png") repeat-x scroll left top;
+    padding-top: 10px;
+}
+.mr20 {
+    margin-bottom: 20px;
+}
+.mr30 {
+    margin-bottom: 30px;
+}
+.mr40 {
+  margin-bottom: 40px;
+  &.block-sale {
+    position: relative;
+    display: inline-block;
+    .robin-sale {
+        left: -6px;
+        position: absolute;
+        top: -5px;
+    }
+  }
+}
+
+/*policy*/
+.static-top-home {
+  margin: 20px 0;
+  .banner-no-padding {
+       background: url("../images/border-banner-top.png") no-repeat scroll right 5px;
+      .content-banner-top {
+          padding-left:58px;
+          background: url("../images/icontop.png") no-repeat scroll 0 0px;
+          h2 {
+          text-transform:uppercase;
+          font-size:123%; 
+          font-weight: 500;
+        }
+        > p {
+            padding-top: 2px;
+        }
+      }
+    &.free-shipping .content-banner-top{
+     background: url("../images/icontop1.png") no-repeat scroll 0 0px;
+    }
+    &.free-return .content-banner-top{
+    background: url("../images/icontop2.png") no-repeat scroll 0 0px;
+    }
+    &.cash-on-delivery .content-banner-top{
+      background: url("../images/icontop3.png") no-repeat scroll 0 0px;
+    }
+    &.free-call {
+      background: transparent;
+      .content-banner-top{background: url("../images/icontop4.png") no-repeat scroll 0 0px;}
+
+    }
+  }
+}
+/* ******************************BLOCK *************************** */
+.home-products {
+    .grid-blog{
+      padding-top:0px;
+      li{
+        border-bottom:1px solid #e9e9e9;
+        margin-bottom:7px;
+        display: block;
+        clear: both;
+        width: 100%;
+        padding-bottom:10px;
+        &:first-child, &:last-child {
+          border:none;
+        }
+      }
+
+    }
+    .item-lb-image{
+      width:170px;
+      float:left;
+      position:relative;
+      overflow:hidden;
+      margin-bottom:17px;
+      img{width:100%;}
+    }
+    .w-agoday{
+         color: #909090;
+         font-size: 91.67%;       
+      }
+    .lt-blog-info{
+      text-align:left;
+      .item-lb-title{
+        a{
+          font-size:133.33%;
+          letter-spacing: 0.5px;
+          .transition(.2s);
+          line-height: 15px;
+          span{
+            display:block;
+            padding-bottom:3px;
+          }
+        }
+      } 
+      &.info-first-blog { margin-left: 182px;}
+    }
+} 
+/*clients-say*/
+.clients-say {
+  .carousel.slide{padding-top: 35px}
+  .list-customer .item-cus {
+    display: inline-block;
+    margin-bottom: 30px;
+    width: 100%;
+    .cus-image-box {
+       border: 5px solid #ededed;
+      display: inline-block;
+      float: left;
+      height: 100px;
+      line-height: 0;
+      width: 100px;
+    }
+    .cus-info-box {
+      margin-left: 120px;
+      .detail-s {
+          font-style: italic;
+          margin-bottom: 0px;
+      }
+      .name-client {
+            font-size: 116.67%;
+        }   
+    }
+    &:last-child{
+      margin: 0px;
+    }
+  }
+  .owl-dots {
+    position: absolute;
+    left: 0;
+    top:0;
+    .owl-dot {
+      border: medium none;
+      background: #e2e2e2 none repeat scroll 0 0;
+      height: 14px;
+      width: 14px;
+      margin: 0 5px 0 0;
+      .border_radius(50%);
+      cursor: pointer;
+  }
+  }
+}
+/*brand*/
+.brand-bottom-wrapper{
+  margin-bottom: 30px;
+.block-title{
+     background:url("../images/bg-title-content.png") no-repeat scroll center bottom;
+    padding-bottom: 33px;
+  .w-title{
+    background: rgba(0, 0, 0, 0) url("../images/bg-content-home.png") no-repeat scroll center bottom;
+    height: 30px;
+    text-align: center;
+    h2{
+    background: #fff none repeat scroll 0 0;
+    display: inline-block;
+    font-size: 200%;
+    margin-top: 14px;
+    padding: 0 10px;
+    position: relative;
+    text-transform: uppercase;
+   }
+  }
+}
+.brand-products {
+  padding: 0 30px;
+  img:hover{
+    .opacity(0.8);
+  }
+}
+.owl-controls .owl-nav div {
+    background-color: #ffffff;
+    background-position: 10px 9px;
+    background-repeat: no-repeat;
+   
+    .border_radius(3px);
+    height: 29px;
+    margin-top: -14px;
+    width: 29px;
+    z-index: 100;
+    position: absolute;
+    margin: 0px;
+    top:30%;
+    &:before{
+     
+      line-height: 26px;
+    }
+    &.owl-prev {
+      left: 0;
+    }
+    &.owl-next {
+      right: 0;
+    }
+}
+}
+/*newletter*/
+.newletter-home {
+    margin-bottom: 40px;
+     .bg-newletter {
+        background: #efefef none repeat scroll 0 0;
+        padding: 30px 50px 30px 44px;
+        .new-static {
+           max-width: 340px;text-align: center;
+           > h2 {
+                font-size: 216.67%;
+                line-height: 35px;
+                margin-bottom: 7px;
+                text-transform: uppercase;
+                font-weight: 500;
+            }
+        }
+        .form.subscribe {
+            margin-top: 15px;
+            text-align: right;
+            .input-box {
+               margin-bottom: 10px;
+               width: 90%;
+               float: right;
+              input {
+                .border_radius(3px);
+                font-size: 91.67%;            
+                border: 1px solid #d9d9d9;
+                padding: 7px 10px;
+               }
+               .mage-error {text-align: left;}
+            }
+            .actions {
+              button {
+                float: right;
+                margin-left: 30px;
+                background-color: #868686;
+                border-radius: 3px;
+                color: #ffffff;
+                display: inline-block;
+                font-size: 133.33%;
+                height: 38px;
+                line-height: 38px;
+                padding: 0 13px !important;
+                transition: all 0.4s ease 0s;
+                > span {
+                  background:  url("../images/icon-nl-button.png") no-repeat scroll right 2px;
+                  padding-right: 16px;
+                }
+             }
+             .new-note {
+                float: right;
+                line-height: 24px;
+                margin-top: -3px;
+                text-align: right;
+                p{margin: 0px;}
+                a{font-weight: bold;}
+            }
+          }
+        }
+    }
+}

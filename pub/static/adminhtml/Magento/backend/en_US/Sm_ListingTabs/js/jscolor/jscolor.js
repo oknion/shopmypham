@@ -1,0 +1,1 @@
+/var/www/html/magento/app/code/Sm/ListingTabs/view/adminhtml/web/js/jscolor/jscolor.js

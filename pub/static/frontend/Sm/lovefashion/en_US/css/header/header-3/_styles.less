@@ -1,0 +1,228 @@
+.header-style-3 {
+  .logo-top{
+    position: relative;
+    .logo-wrapper {
+      background-color: #fff;
+      padding: 35px 13px;
+      left: 0;
+      top:0;
+      position: absolute;
+      text-align: center;
+      width: auto;
+      z-index: 9999;
+      h1.logo-content {margin: 0px;font-size: 0px;}
+    }
+  }
+	.header-top {
+    border: 0px;
+    > .container {position: relative;}
+    
+    .language-currency-top {
+    	.border_radius(18px);
+	    height: 36px;
+	    padding-left: 10px;
+	    position: absolute;
+	    right: 15px;
+	    top: 17px;
+	     .switcher-trigger {
+	     	 padding:8px 12px 8px 8px;
+	     	 .active,&:hover {background: transparent !important;}
+	     	strong {color: #fff;}
+	     }
+    }
+   
+    .main-megamenu{
+    	 padding-left: 240px;
+    	 .sambar {position: static;}
+    	.sm_megamenu_wrapper_horizontal_menu .sm_megamenu_menu {
+		     	> li {
+		     		border: 0px !important;
+		     		> a {
+		     			color: #fff !important;
+		     			padding: 22px 17px !important;
+		     			font-size: 120% !important;
+		     			> .icon_items {top: -1px !important;}
+		     		}
+		     	}
+		     } 
+		}
+     }
+    .header-bottom {
+    	background: #272727 none repeat scroll 0 0;
+	    padding: 15px 0;
+	    ul.my-links {
+	    	float: right;
+	    	> li{
+	    		position: relative;
+	    		margin: 0px 0 2px;
+		    	a {
+		    		      display: inline-block;
+	                padding: 0px 20px 0px 0px;
+	                color: #a8a8a8; 
+		    		&:before{color: #909090;padding-right: 12px;}
+		    		&.my-wishlist {
+			            &:before{ .font-awesome(f004,13px);}
+			        }
+			        &.my-compare {
+			            &:before{ .font-awesome(f0ec,14px);}
+			        } 
+			        &.account-link {
+			            &:before{ .font-awesome(f007,14px);}
+			        } 
+			        &.checkout {
+			            &:before{ .font-awesome(f00c,14px);}
+			        } 
+		    	}
+		    &.account-link > a {
+            	background: rgba(0, 0, 0, 0) url("../images/dropdown-cus-lang.png") no-repeat scroll right 8px;
+            }
+             .dropdown-link {
+                background: #fff none repeat scroll 0 0;
+                box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+                .opacity(0);
+                padding: 5px 10px;
+                position: absolute;
+                left: 0;
+                top: 20px;
+                text-align: left;
+                display: none;
+                transform-origin: right top 0;
+                .transition(all 0.3s ease 0s);
+                width: 150px;
+                z-index: 9;
+                li {
+                	a {
+                		color: #666;
+					    display: block;
+					    padding: 2px 0;
+                	}
+                  &:last-child{border:0px;}
+                }
+            }
+           
+            &:hover .dropdown-link{
+                  .opacity(1);
+                  display: block;
+            }
+	   	 }
+	   	 &.wishlist-compare {
+	   	 	border-left: 1px solid #3a3a3a;
+		    margin-left: 25px;
+		    margin-right: 0;
+		    padding-left: 25px;
+	   	 }
+	    } 
+	 
+	    // SEARCH BOX PRO
+	   .searchbox-header {float: right;}
+      .sm-searchbox{
+        .nested{
+              display: none;
+            }
+        .sm-searchbox-content{
+          position: relative;
+          .border_radius(3px);
+          background-color: #fff;
+           height: 42px;
+          padding: 0;
+          .control{
+            .cat-wrapper {float: left;}
+            .searchbox-cat{
+              width: 115px;
+              border: 0;
+              color: #909090;
+              background: url("../images/dropdow-search-box.png") no-repeat scroll right center;
+              height: 42px;
+              font-size: 91.67%;
+              &:hover{
+                cursor: pointer;
+              }
+            }
+
+            #searchbox{
+              padding-left:20px;
+              height: 42px;
+              line-height: 42px;
+              border: 0;
+              .border_radius(3px);
+              border-left:1px solid #dedede;
+              margin-left: 10px;
+              font-size: 91.67%;
+              color: #909090;
+              padding-right: 40px;
+              background-color: #fff;
+              min-width: 230px;
+              width: auto;
+             
+            }
+          }
+
+          .actions{
+            .btn-searchbox{
+              background-image: url("../images/btn-search.png");
+              .border_radius(3px);
+              background-position: center center;
+              background-repeat: no-repeat;
+              height: 42px !important;
+              overflow: hidden;
+              position: absolute;
+              right: 0;
+              top:0;
+              padding: 0px !important;
+              text-indent: -9999px;
+              width: 42px;
+              .opacity(1);
+              span{
+                display: none;
+              }
+            }
+          }
+        }
+
+      }
+
+      // END SEARCH BOX PRO
+       .minicart-header{
+        float: right;
+        .minicart-content{
+          .cart-wrapper{
+            .minicart-wrapper{
+              margin:0;
+
+              .showcart{
+                cursor: pointer;
+                position: relative;
+                padding: 10px 25px 10px 35px;
+                margin-left: 10px;
+                .border_radius(3px);
+                &:before{
+                  top:12px;
+                  left: 10px;
+                  content: "" !important;
+                   background: rgba(0, 0, 0, 0) url("../images/icon-cart-hd-3.png") no-repeat scroll left top;
+                  display: inline-block;
+                  height: 44px;
+                  position: absolute;
+                  width: 47px;
+                }
+
+                .text{
+                  white-space: nowrap;
+                  text-transform: capitalize;
+                  font-size: 116.67%;
+                  margin: 0;
+                  color: #fff;
+                }
+
+                .counter{
+                  	display: none;
+                }
+              }
+
+
+            }
+          }
+        }
+      }
+    }
+}

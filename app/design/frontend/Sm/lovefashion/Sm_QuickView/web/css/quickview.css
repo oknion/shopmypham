@@ -1,0 +1,103 @@
+
+.sm_quickview_handler {
+	border: 0 none;
+	color: #FFFFFF !important;
+	display: inline-block;
+	font-family: "Raleway","Helvetica Neue",Verdana,Arial,sans-serif;
+	font-size: 13px;
+	font-weight: normal;
+	line-height: 19px;
+	padding: 7px 15px;
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	text-decoration:none;
+	margin:10px 0;
+}
+
+.sm_quickview_handler:hover,
+.sm_quickview_handler:focus
+{
+	border: 0 none;
+	color: #FFFFFF;
+	text-decoration:none;
+	cursor:pointer;
+}
+
+.sm_quickview_handler:focus{
+	outline:none outline;
+}
+
+.fancybox-lock .zoomContainer{
+	-webkit-transform:none!important;
+}
+
+.fancybox-lock .zoomContainer .zoomLens,
+.fancybox-lock .zoomContainer .zoomWindow {
+	z-index:8021!important;
+}
+
+.quickview-main .product-image-thumbs li:first-child{
+	margin-left:0;
+}
+
+
+.quickview-main .product-collateral{
+	display:none;
+}
+
+.products-list li.item .f-fix .sm_quickview_handler{
+	float:left;
+}
+
+
+@media all and (max-width: 639px) {
+	.sm_quickview_handler {
+		display: none;
+	}
+}
+
+.fancybox-overlay{
+	z-index:999!important;
+}
+
+#quickview-gallery-placeholder._block-content-loading,
+#quickview-gallery-placeholder.gallery-loading{
+	min-width:700px!important;
+}
+
+.sm-quickview{
+	overflow:hidden;
+}
+
+.smqv-title h1{
+	border-bottom:1px solid #CCC;
+	padding-bottom:20px;
+	margin-bottom:20px;
+}
+
+.bundle-options-container .bundle-options-wrapper, .bundle-options-container .product-options-wrapper{
+	width:100%;
+}
+
+.smqv-height-content {
+	height:auto!important;
+}
+
+.sm-quickview .product-info-main .product-reviews-summary{
+	float:none;
+}
+
+.sm-quickview .product-info-main .product-info-stock-sku{
+	display:block;
+	padding:0;
+	text-align:left;
+}
+
+.sm-quickview .product-info-main .product-info-stock-sku div{
+	display:inline-block;
+}
+
+.sm-quickview .product-info-main .product-info-price .price-box {
+	display:block;
+}

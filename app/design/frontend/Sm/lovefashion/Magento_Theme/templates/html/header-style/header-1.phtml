@@ -1,0 +1,140 @@
+<div class="header-container header-style-1">
+	<div class="header-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5 col-md-5 col-sm-5 language-currency-top">
+					<?php echo $block->getChildHtml('currency-header'); ?>
+					<?php echo $block->getChildHtml('language-header'); ?>
+					
+				</div>
+				
+				<div class="col-lg-7 col-md-7 col-sm-7 toplinks-header">
+					 <ul class="links-account">
+						<li class="account-link hidden-xs">
+							<a href="<?php echo $block->getUrl('customer/account')?>" title="<?php echo __('My Account');?>" ><?php echo __('My Account');?></a>
+							<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('account-dropdown')->toHtml();?>
+						</li>
+
+						<li class="register-link-help hidden-xs">
+							<a href="#" title="<?php echo __('Help');?>" ><?php echo __('Help');?></a>
+							<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('help-dropdown')->toHtml();?>
+						</li>
+						<li class="checkout"><a href="<?php echo $block->getUrl('checkout')?>" title="<?php echo __('Checkout');?>" ><?php echo __('Checkout');?></a></li>
+					</ul>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="header-middle">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 logo-header">
+					<?php echo $block->getChildHtml('logo-header'); ?>
+				</div>
+				
+				<div class="col-lg-9 col-md-9 header-middle-right">
+					<div class="middle-right-content">
+						<div class="minicart-header">
+							<div class="minicart-content">
+								<?php echo $block->getChildHtml('cart-header'); ?>
+							</div>
+							<ul class="wishlist-compare hidden-xs">
+							<?php echo $block->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Wishlist::link.phtml')->toHtml(); ?>
+							  <?php echo $block->getChildHtml('compare-header-link'); ?>
+
+							</ul>
+						</div>
+													
+						
+						<div class="searchbox-header">
+							<?php echo $block->getChildHtml('search-header-pro'); ?>
+						</div>
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="header-bottom">
+		<div class="container">
+				<div class="main-megamenu">
+							<div class="yt-menu">
+									<div class="menu-under">					
+										<div class="navigation-container <?php ($_config->getGeneral('menu_style') == 'megamenu') ? "":" css-menu-wrap"; ?>">
+											<?php
+												if($_config->getGeneral('menu_style') == 'megamenu'){
+													echo $block->getChildHtml('navigation-header-megamenu');
+												} else {
+													echo $block->getChildHtml('navigation-header');
+												}
+											?>
+											<div class="navigation-mobile-container">
+												<?php echo $block->getChildHtml('navigation.mobile'); ?>
+											</div>
+										</div>
+									</div>
+								</div>
+							<div class="quick-info hidden-xs"> 
+								<div class="inner">
+									
+									
+									<?php 
+										$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+										$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+										if($customerSession->isLoggedIn()) { ?>
+										
+										<div class="item1"><a class="popup-logout" href="<?php echo $block->getUrl('customer/account/logout')?>" title="<?php echo __('Logout');?>"><?php echo __('Logout'); ?></a></div>
+
+										<?php } else {?>
+										<div class="item1">
+											<a  title="Register" href="<?php echo $block->getUrl('customer/account/create')?>">
+											<?php echo __('Join Free'); ?>
+											</a>
+										</div>
+										<div class="item2">
+										<span><?php echo __('Sign in'); ?></span>
+										<div class="login-quick">
+											<?php 	//echo $block->getChildHtml('header-login'); ?>
+											<?php echo $block->getLayout()->createBlock('Magento\Customer\Block\Form\Login')->setTemplate('Magento_Customer::form/mini.login1.phtml')->toHtml(); ?>
+										</div>
+										</div>
+										<?php } ?>
+									
+								</div>								
+							</div>
+							<div class="block-mobile account-links-mobile visible-xs hidden-sm hidden-ld hidden-md">
+								<div class="w-mobile">
+									<a href="javascript:void(0);" class="btn-mobile-h link-mobile-icon"></a>
+									<div class="show-content-mobile link-mobile-wrapper">
+										<?php //echo $this->getChildHtml('topLinks');?>
+										<ul class="links-mobile">
+											<?php 
+												$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+												$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+
+												if($customerSession->isLoggedIn()) { 
+													echo $customerSession->getCustomer()->getName().',';; 
+													?>
+												   <li><a class="popup-logout" href="<?php echo $block->getUrl('customer/account/logout')?>" title="<?php echo __('Logout');?>"><?php echo __('Logout');?></a></li>
+												<?php }else {
+												 ?>
+												<li><a class="popup-login"  href="<?php echo $block->getUrl('customer/account/login/')?>" title="<?php echo __('Login')?>"><?php echo __('Login')?></a></li>	
+												<li><a class="popup-login" href="<?php echo $block->getUrl('customer/account/create/')?>" title="<?php echo __('Register')?>"><?php echo __('Register')?></a></li>
+
+												<?php }	?>
+												<li class="checkout"><a href="<?php echo $block->getUrl('checkout')?>" title="<?php echo __('Checkout');?>" ><?php echo __('Checkout');?></a></li>
+										</ul>
+										<?php // echo $this->getChildHtml('topLinksSecond');?>
+									</div>
+								</div>
+						</div>
+				</div>
+
+		</div>
+	</div>
+</div>
+

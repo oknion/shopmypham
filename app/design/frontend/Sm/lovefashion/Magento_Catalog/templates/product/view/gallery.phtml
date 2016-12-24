@@ -1,0 +1,296 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+
+<?php $_width = $block->getImageWidth(); 
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+
+$_config = $this->helper('Sm\Lovefashion\Helper\Data');
+$zoom_enable = $_config->getProductDetail('use_zoom_image');
+$zoom_mode = $_config->getProductDetail('zoom_mode');
+$zoom_scroll = $_config->getProductDetail('mouse_zoom');
+
+$lightbox_style = $_config->getProductDetail('lightbox_types');
+$open_close_effect = $_config->getProductDetail('open_close_effect');
+$next_prev_effect = $_config->getProductDetail('next_prev_effect');
+$mouse_lightbox = $_config->getProductDetail('mouse_lightbox');
+
+$detailStyle = $_config->getProductDetail('detail_style');
+$thumsStyle = $_config->getProductDetail('thumbs_style');
+?>
+
+<?php if($zoom_mode == 'lens'){?>
+	<style>
+		.zoomContainer{
+			overflow: hidden;
+		}
+	</style>
+
+<?php } ?>
+
+<div class="product-image-detail">
+    <?php
+        $imageUrl = $this->helper('Magento\Catalog\Helper\Image')
+            ->init($block->getProduct(), 'product_page_image_large')
+            ->setImageFile($block->getImageFile())
+            ->getUrl();
+
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($block->getProduct()->getId());        
+    $images = $product->getMediaGalleryImages();
+	
+	?>
+	
+	<div class="large-image">
+		<img id="product-gallery-image" class="image" src="<?php /* @escapeNotVerified */ echo $imageUrl; ?>" alt="<?php echo $_helper->productAttribute($product, $product->getName(), 'name');?>" />
+		
+		<?php $i=0; foreach($images as $child){ $i++?> 
+		
+		<?php 			
+		if( file_exists($child->getUrl()) || @getimagesize($child->getUrl()) !== false ){
+			$image_path = $child->getUrl();
+		}else{
+			$image_path = $imageUrl;
+		}
+		?>
+		<a data-id="item-<?php echo $i;?>" class="gallery-image" href="<?php echo $image_path; ?>" <?php if($i==1){ echo "id='btn-gallery'";}?> data-fancybox-group="thumb"><span class="hidden"><?php echo __('Button')?></span></a>
+		<?php }?>
+	</div>
+	
+	<div class="thumbs-container">
+		<div class="thumb-slider">
+			<?php $i=0; foreach($images as $child){ $i++?> 
+				<?php 
+				if( file_exists($child->getUrl()) || @getimagesize($child->getUrl()) !== false){
+					$image_path = $child->getUrl();
+				}else{
+					$image_path = $imageUrl;
+				}
+				?>				
+				<div class="thumb-item">
+					<div class="thumb-image" href="javascript:void(0)" data-id="item-<?php echo $i;?>" data-href="<?php echo $image_path; ?>">
+						<img src="<?php echo $image_path; ?>" alt="<?php echo __('Thumb Image')?>" />
+					</div>
+				</div>
+			<?php }?>
+		</div>
+	</div>
+	
+	
+	<script>
+		jQuery(document).ready(function($){
+			$('.thumb-slider').lightSlider({
+				loop:false,
+				slideMove:1,
+				pager: false,
+				easing: 'cubic-bezier(0.25, 0, 0.25, 1)',
+				speed:600,
+				
+				<?php if($detailStyle == 'detail-1'){ // DETAIL STYLE 1
+					if($thumsStyle == 'horizontal'){?>
+						vertical: false,
+						item:4,
+						slideMargin: 10,
+						responsive : [
+							{
+								breakpoint:800,
+								settings: {
+									item:3,
+									slideMove:1,
+									slideMargin:6,
+								  }
+							},
+							{
+								breakpoint:480,
+								settings: {
+									item:2,
+									slideMove:1
+								  }
+							}
+						]
+					<?php } else {?>
+						vertical: true,
+						item:3,
+						verticalHeight: 305,
+						slideMargin:10,
+						responsive : [
+							{
+								breakpoint:1199,
+								settings: {
+									item:2,
+									slideMove:1,
+									verticalHeight: 200,
+								  }
+							},
+							{
+								breakpoint:767,
+								settings: {
+									item:4,
+									slideMove:1,
+									verticalHeight: 400,
+								  }
+							},
+							{
+								breakpoint:480,
+								settings: {
+									item:2,
+									verticalHeight: 190,
+									slideMove:1
+								  }
+							}
+						]
+					<?php }
+				} ?>
+				
+				<?php if($detailStyle == 'detail-2' || $detailStyle == 'detail-3'){ // DETAIL STYLE 2, 3
+					if($thumsStyle == 'horizontal'){?>
+						vertical: false,
+						item:4,
+						slideMargin: 10,
+						responsive : [
+							{
+								breakpoint:800,
+								settings: {
+									item:3,
+									slideMove:1,
+									slideMargin:6,
+								  }
+							},
+							{
+								breakpoint:480,
+								settings: {
+									item:2,
+									slideMove:1
+								  }
+							}
+						]
+					<?php } else {?>
+						vertical: true,
+						item:3,
+						verticalHeight: 305,
+						slideMargin: 10,
+						responsive : [
+							{
+								breakpoint:1199,
+								settings: {
+									item:3,
+									slideMove:1,
+									verticalHeight: 300,
+								  }
+							},
+							{
+								breakpoint:991,
+								settings: {
+									item:4,
+									slideMove:1,
+									verticalHeight: 400,
+								  }
+							},
+							{
+								breakpoint:767,
+								settings: {
+									item:4,
+									slideMove:1,
+									verticalHeight: 400,
+								  }
+							},
+							{
+								breakpoint:480,
+								settings: {
+									item:2,
+									verticalHeight: 190,
+									slideMove:1
+								  }
+							}
+						]
+					<?php }
+				} ?>
+			});
+			
+			// ZOOM
+			<?php if($zoom_enable){?>
+			function zoom(){
+				$('#product-gallery-image').elevateZoom({
+					<?php if($zoom_mode != "inner" && $zoom_scroll){?>
+					scrollZoom: true,
+					<?php } else {?>
+					scrollZoom: false,
+					<?php } ?>
+					
+					zoomType: "<?php echo $zoom_mode;?>",
+					cursor: "crosshair",
+					zoomWindowFadeIn: 200,
+					zoomWindowFadeOut: 200
+			   }); 
+			}
+			
+			zoom();
+			
+			<?php } ?>
+			
+			// CLICK THUMB TO ADD IMAGE TO LAGER IMAGE BOX
+			
+			$( ".thumb-slider .thumb-item .thumb-image" ).click(function() {
+				$( ".thumb-slider .thumb-item .thumb-image" ).removeClass('thumb-active');
+				$(this).addClass('thumb-active');
+				
+				var href_thumbs = $(this).attr("data-href");
+				
+				$('.large-image #product-gallery-image').attr("src",href_thumbs);
+				
+				<?php if($zoom_enable){?>
+					$('.zoomContainer').remove();
+					zoom();
+				<?php } ?>
+			});
+			
+			// GALLERY
+			
+			$("a.gallery-image").fancybox({
+				openEffect: "<?php echo $open_close_effect;?>",
+				closeEffect: "<?php echo $open_close_effect;?>",
+				nextEffect: "<?php echo $next_prev_effect;?>",
+				prevEffect: "<?php echo $next_prev_effect;?>",
+				
+				<?php if($mouse_lightbox){?>
+				mouseWheel: true,
+				<?php } else {?>
+				mouseWheel: false,
+				<?php } ?>
+				
+				<?php if($lightbox_style == 'button'){?>
+				helpers		: {
+					buttons	: {}
+				}
+				
+				<?php } ?>
+				
+				<?php if($lightbox_style == 'thumbs'){?>
+				helpers	: {
+					thumbs	: {
+						width	: 50,
+						height	: 50
+					}
+				}
+				
+				<?php } ?>
+			});
+			
+			
+		});
+	</script>
+	
+    
+	    
+</div>

@@ -1,0 +1,66 @@
+<div class="header-container header-style-3">
+	<div class="container logo-top">
+		<?php echo $block->getChildHtml('logo-header'); ?>
+	</div>
+
+	<div class="header-top">
+		<div class="container">
+				<div class="main-megamenu">
+					<div class="yt-menu">
+									<div class="menu-under">					
+										<div class="navigation-container <?php ($_config->getGeneral('menu_style') == 'megamenu') ? "":" css-menu-wrap"; ?>">
+											<?php
+												if($_config->getGeneral('menu_style') == 'megamenu'){
+													echo $block->getChildHtml('navigation-header-megamenu');
+												} else {
+													echo $block->getChildHtml('navigation-header');
+												}
+											?>
+											<div class="navigation-mobile-container">
+												<?php echo $block->getChildHtml('navigation.mobile'); ?>
+											</div>
+										</div>
+									</div>
+								</div>
+				</div>
+				<div class="language-currency-top">
+					<?php echo $block->getChildHtml('currency-header'); ?>
+					<?php echo $block->getChildHtml('language-header'); ?>
+				</div>
+
+		</div>
+	</div>
+
+
+	
+	<div class="header-bottom">
+		<div class="container">
+					<div class="middle-right-content">	
+						<div class="minicart-header">
+							<div class="minicart-content">
+								<?php echo $block->getChildHtml('cart-header'); ?>
+							</div>
+						</div>
+						<div class="searchbox-header">
+							<?php echo $block->getChildHtml('search-header-pro'); ?>
+						</div>
+												
+						<ul class="wishlist-compare my-links hidden-sm hidden-xs">
+							<?php echo $block->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Wishlist::link.phtml')->toHtml(); ?>
+							 <?php echo $block->getChildHtml('compare-header-link'); ?>
+						</ul>
+						<ul class="links-account my-links hidden-xs">
+							<li class="account-link">
+								<a class="account-link" href="javascript:void(0)" title="<?php echo __('My Account');?>" ><?php echo __('My Account');?></a>
+								<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('account-dropdown')->toHtml();?>
+							</li>
+							<li class="checkout"><a class="checkout" href="<?php echo $block->getUrl('checkout')?>" title="<?php echo __('Checkout');?>" ><?php echo __('Checkout');?></a></li>
+						</ul>
+						
+					</div>
+			</div>
+	</div>
+	
+	
+</div>
+

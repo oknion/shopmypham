@@ -1,0 +1,145 @@
+.sm-searchbox
+{
+	margin: 10px 0;
+}
+
+.sm-searchbox .sm-searchbox-popular-title
+{
+	float: left;
+	font-weight: 600;
+	margin: 0;
+	overflow: hidden;
+	position: relative;
+	word-break: break-all;
+	z-index: 1;
+	display: block;
+	text-decoration: none;
+}
+
+.sm-searchbox .pre-text, .sm-searchbox .post-text
+{
+	margin: 10px 0;
+}
+
+.sm-searchbox .sm-searchbox-popular {
+	width: 71%;
+	float: left;
+	margin-bottom: 10px;
+}
+
+.sm-searchbox .sm-searchbox-advanced {
+	width: 29%;
+	float: right;
+	text-align: right;
+	margin-bottom: 10px;
+}
+
+.sm-searchbox .sm-searchbox-keyword-list {
+	/*float: left;*/
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.sm-searchbox .sm-searchbox-keyword-list li {
+	float: left;
+	margin-left: 5px;
+}
+
+.sm-searchbox .sm-searchbox-keyword-list li a {
+	float: left;
+	text-decoration: none;
+	margin-right: 10px;
+}
+
+.sm-searchbox .sm-searchbox-content
+{
+	display: inline-block;
+	width: 100%;
+}
+
+.sm-searchbox .sm-searchbox-content .searchbox, .sm-searchbox .sm-searchbox-content .actions
+{
+	float: left;
+	line-height: 1.42857;
+}
+
+.sm-searchbox .sm-searchbox-content .searchbox .control input[type="text"],
+.sm-searchbox .sm-searchbox-content .searchbox .control input[type="password"],
+.sm-searchbox .sm-searchbox-content .searchbox .control input[type="url"],
+.sm-searchbox .sm-searchbox-content .searchbox .control input[type="tel"],
+.sm-searchbox .sm-searchbox-content .searchbox .control input[type="search"],
+.sm-searchbox .sm-searchbox-content .searchbox .control input[type="number"],
+.sm-searchbox .sm-searchbox-content .searchbox .control input[type="datetime"],
+.sm-searchbox .sm-searchbox-content .searchbox .control input[type="email"]
+{
+	margin: 5px 0;
+}
+
+.sm-searchbox .sm-searchbox-content .searchbox
+{
+	width: 85%;
+}
+
+.sm-searchbox .sm-searchbox-content .searchbox .searchbox-cat
+{
+	width: 30%;
+}
+
+.sm-searchbox .sm-searchbox-content .searchbox .input-searchbox
+{
+	width: 69%;
+}
+
+.sm-searchbox .sm-searchbox-content .actions
+{
+	width: 14.5%;
+	margin: 5px 0;
+	padding-left: 2px;
+}
+
+.sm-searchbox .sm-searchbox-content .actions button.searchbox-actions
+{
+	width: 100%;
+	line-height: 1.42857;
+	height: 32px;
+}
+
+.sm-searchbox a.sm-searchbox-more:hover
+{
+	cursor: pointer;
+}
+
+@media all and (max-width: 479px) {
+	.sm-searchbox .sm-searchbox-content .searchbox
+	{
+		width: 100%;
+	}
+
+	.sm-searchbox .sm-searchbox-content .actions {
+		width: 100%;
+		margin: 5px 0;
+		padding-left: 0;
+	}
+
+	.sm-searchbox .sm-searchbox-content .searchbox .searchbox-cat {
+		width: 100%;
+	}
+
+	.sm-searchbox .sm-searchbox-content .searchbox .input-searchbox {
+		width: 100%;
+	}
+}
+
+@media all and (min-width: 768px) and (max-width: 992px) {
+	.sm-searchbox .sm-searchbox-content .searchbox .searchbox-cat {
+		width: 30.3%;
+	}
+}
+
+@media all and (min-width: 992px) {
+	.sm-searchbox .sm-searchbox-content .searchbox .searchbox-cat {
+		width: 30.5%;
+		padding-top: 4px;
+	}
+}

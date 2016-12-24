@@ -1,0 +1,64 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+ 
+$_config = $this->helper('Sm\Lovefashion\Helper\Data');
+$headerStyle = $_config->getThemeLayout('header_style');
+$compile_less = $_config->getAdvanced('compile_less');
+
+include (dirname(__FILE__).'/header-style/'.$headerStyle.'.phtml');
+if( $compile_less ){
+	include (dirname(__FILE__).'/complie_less.phtml');
+}
+?>
+<?php 
+if($_config->getAdvanced('show_newsletter_popup')) {
+		//echo 'aaaa';
+		echo $block->getChildHtml('popup-newsletter');	
+	}
+?>
+<?php if($_config->getGeneral('menu_ontop')){ ?>
+	<script>
+		jQuery(document).ready(function($){ 
+		<?php
+		 if($headerStyle == "header-3" || $headerStyle == null) {
+			$elon = '.header-style-3 .header-top';
+		}
+		 elseif($headerStyle == "header-5" || $headerStyle == null) {
+			$elon = '.header-style-5 .header-middle';
+		}	
+		else {
+			$elon = '.header-bottom';	
+		}
+		
+		?>		
+			$elon = '<?php echo $elon; ?>';
+			$window = $(window);
+			if($($elon).length){
+				menu_offset_top = $($elon).offset().top + 100;
+				function processScroll() {
+					var scrollTop = $window.scrollTop();
+					if ( scrollTop >= menu_offset_top) {
+						$($elon).addClass('menu-on-top');
+					} else if (scrollTop <= menu_offset_top) {
+						$($elon).removeClass('menu-on-top');
+					}
+				}
+				processScroll();
+				$window.scroll(function(){
+					processScroll();
+				});
+			}
+		});
+
+	</script>
+<?php } ?>	
+

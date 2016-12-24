@@ -1,0 +1,1 @@
+/var/www/html/magento/app/design/frontend/Sm/lovefashion/Sm_ListingTabs/web/js/owl.carousel.js

@@ -1,0 +1,116 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+$_config = $this->helper('Sm\Lovefashion\Helper\Data');
+?>
+
+<div class="yt-footer-wrap" id="yt_footer">
+	<div class="yt-footer-top">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5 col-sm-5 col-xs-12 contact-payment-footer">
+					
+					<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('description-payment-footer')->toHtml(); ?>
+				</div>
+				
+				<div class="col-md-7 col-sm-7 col-xs-12 footer-link-block">
+					<!--<div class="row row-1">-->
+					<div class="row">
+						<div class="col-lg-4 col-md-4 col-sm-6">
+							<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('connect-with-us-footer')->toHtml(); ?>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6">
+							<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('information-footer')->toHtml(); ?>
+						</div>
+						<div class="col-lg-4 col-md-4 col-sm-6">
+							<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('customer-service-footer')->toHtml(); ?>
+						</div>
+					<!--</div>-->
+					
+					<!--<div class="row row-2">-->
+						<div class="col-lg-4 col-md-4 col-sm-6 account-links-ft">
+							<div class="block-ft footer-contact">
+								<div class="footer-title">
+									<h2>My Account</h2>
+								</div>
+								<div class="content-block-footer">
+									<ul class="right-footer-link">
+										<li class="item">
+											<?php
+												$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+												$customerSession = $objectManager->get('Magento\Customer\Model\Session');
+											?>
+										
+										<?php if($customerSession->isLoggedIn()){?>
+											<a href="<?php echo $this->getUrl('customer/account/logout')?>" title="<?php echo __('Logout')?>"><?php echo __('Logout')?></a>
+										<?php } else {?>
+											 <a href="<?php echo $this->getUrl('customer/account/login')?>" title="<?php echo __('Login')?>"><?php echo __('Login')?></a>
+										<?php } ?>
+										</li>
+										
+									</ul>
+									<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('my-account-footer')->toHtml(); ?>	
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-8 col-md-8 col-xs-12 contact-links-ft">
+							<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('contact-footer')->toHtml(); ?>	
+						</div>
+					</div>
+					<!--</div>-->
+					
+					<div class="copyright">
+						<?php if($_config->getAdvanced('custom_copyright')){ ?>
+							<address><?php echo $_config->getAdvanced('copyright_content') ?></address>
+						<?php } else {?>
+							<address><?php /* @escapeNotVerified */ echo $block->getCopyright() ?></address>
+						<?php } ?>
+						
+					</div>
+				</div>
+			
+			</div>
+				<?php if($_config->getAdvanced('show_gototop')){ ?>
+				<a id="yt-totop" href="javascript:void(0)" title="Go to Top"></a>
+				<script type="text/javascript">
+					jQuery(document).ready(function($){  
+						$("#yt-totop").hide();
+						$(function () {
+							var wh = $(window).height();
+							var whtml =  $(document).height();
+							$(window).scroll(function () {
+								if ($(this).scrollTop() > whtml/10) {
+									$('#yt-totop').fadeIn();
+								} else {
+									$('#yt-totop').fadeOut();
+								}
+							});
+							$('#yt-totop').click(function () {
+								$('body,html').animate({
+									scrollTop: 0
+								}, 800);
+								return false;
+							});
+						});
+					});
+				</script>
+	
+			<?php } ?>
+		</div>
+	</div>
+	
+</div> 
+<div class="social-fixed">
+<?php echo $block->getLayout()->createBlock('Magento\Framework\View\Element\Template')->setTemplate('Magento_Theme::html/social.phtml')->toHtml(); ?>
+</div>
+
+
+
+
+
+

@@ -1,0 +1,48 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see \Magento\Theme\Block\Html\Topmenu
+ */
+?>
+
+<?php 
+	$columnsLimit = $block->getColumnsLimit() ?: 0;
+	$_menu = $block->getHtml('level-top', 'submenu', $columnsLimit);
+	$_config = $this->helper('Sm\Lovefashion\Helper\Data');
+?>
+
+
+<!--SIDEBAR-->
+<div class="block navigation-ds">
+<div class="block-title"><strong><?php echo __('Categories')?></strong></div>
+		<nav class="navigation-details">
+			<ul>
+				<?php /* @escapeNotVerified */ echo $_menu; ?>
+			</ul>
+		</nav>
+</div>
+	<script>
+			jQuery(document).ready(function($){  
+		
+				$('.navigation-details > ul > li').has('ul').append( '<span class="touch-button"><span>open</span></span>' );
+
+				$('.navigation-details .touch-button').click(function(){
+					$(this).prev().slideToggle(200);
+					$(this).toggleClass('active');
+					$(this).parent().toggleClass('parent-active');
+				});
+
+			});
+		</script> 
+
+

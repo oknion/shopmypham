@@ -1,0 +1,138 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var $block \Magento\Catalog\Block\Product\AbstractProduct */
+?>
+
+<?php
+$_config = $this->helper('Sm\Lovefashion\Helper\Data');
+$limit_product = $_config->getProductDetail('related_limit');
+$detailStyle = $_config->getProductDetail('detail_style');
+
+switch ($type = $block->getType()) {
+
+    case 'related-rule':
+        if ($exist = $block->hasItems()) {
+            $type = 'related';
+            $class = $type;
+
+            $image = 'related_products_list';
+            $title = __('Related Products');
+            $items = $block->getAllItems();
+            $limit = $block->getPositionLimit();
+            $shuffle = (int) $block->isShuffled();
+
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+
+        }
+    break;
+
+    case 'related':
+        /** @var \Magento\Catalog\Block\Product\ProductList\Related $block */
+        if ($exist = $block->getItems()->getSize()) {
+            $type = 'related';
+            $class = $type;
+
+            $image = 'related_products_list';
+            $title = __('Related Products');
+            $items = $block->getItems();
+            $limit = 0;
+            $shuffle = 0;
+
+            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+
+        }
+    break;
+
+    case 'other':
+    break;
+}
+?>
+
+<?php if ($exist):?>
+	
+		<div class="block products-sidebar block-related">
+			<div class="block-title">
+				<strong><?php echo __('Related Products')?></strong>
+			</div>
+			
+			<div class="block-content">
+                <?php $i=0; foreach ($items as $_item): 
+                	if($i%3==0) {
+                		echo '<div class="bs-item">';
+                	}
+                ?>
+					<div class="item">
+					<div class="item-inner">
+						<div class="box-image">
+							<a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product photo product-item-photo">
+								<?php echo $block->getImage($_item, $image)->toHtml(); ?>
+							</a>
+						</div>
+							
+						<div class="box-info">
+							<h2 class="product name product-item-name product-name">
+								<a class="product-item-link" title="<?php echo $block->escapeHtml($_item->getName()) ?>" href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>">
+									<?php echo $block->escapeHtml($_item->getName()) ?>
+								</a>
+							</h2>
+
+							<?php echo $block->getReviewsSummaryHtml($_item, $templateType,true) ?>
+								
+							<?php /* @escapeNotVerified */ echo $block->getProductPrice($_item); ?>
+						</div>
+					</div>
+               	</div>
+
+				<?php 
+				$i++;
+				if($i%3 == 0 || $i == count($items) ) 
+					echo '</div>';
+				?>
+                <?php endforeach ?>
+            </div>
+            <script>
+				jQuery(document).ready(function($) {
+					var owl_related = $(".block-related .block-content");
+					owl_related.owlCarousel({
+						
+						responsive:{
+							0:{
+								items:1
+							},
+							480:{
+								items:1
+							},
+							768:{
+								items:1
+							},
+							992:{
+								items:1
+							},
+							1200:{
+								items:1
+							}
+						},
+
+						autoplay:false,
+						loop:false,
+						nav : false, // Show next and prev buttons
+						dots: true,
+						autoplaySpeed : 500,
+						navSpeed : 500,
+						dotsSpeed : 500,
+						autoplayHoverPause: true,
+						margin:30,
+
+					});	  
+				});	
+			</script>
+		</div>
+
+
+<?php endif;?>

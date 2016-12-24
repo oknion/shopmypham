@@ -1,0 +1,214 @@
+.cms-index-index .home-item-parent > a{
+        color: #fff !important;
+        &:after{ color: #fff;}
+}
+
+.header-style-1{
+  
+  .header-top {
+    .language-currency-top .currency-wrapper {margin-right: 10px;}
+    .links-account > li:last-child {background: transparent;}
+  }
+  .header-middle{
+    padding:40px 0 ;
+
+    .logo-header{
+      .logo-wrapper{
+        .logo-content{
+          margin:0;
+
+          strong{
+            a{
+              img{
+                vertical-align: top;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .wishlist-compare {
+      float: right;
+      margin: 0px 0px 0 38px;
+      li {
+
+        a{   
+           display: block;
+          margin-bottom: 3px;
+          padding-left: 12px;
+          &.my-wishlist {
+            &:before{ .font-awesome(f004,13px);color: #909090;padding-right: 12px;}
+          }
+         &.my-compare {
+            &:before{ .font-awesome(f0ec,14px);color: #909090;padding-right: 12px;}
+        } 
+        }
+         
+      }
+  }
+
+    .middle-right-content{
+
+      .searchbox-header{
+       float: right;
+      margin-top: 0px;
+      position: relative;
+      }
+
+      .sm-searchbox-advanced,
+      .sm-searchbox-popular{
+        display: none;
+      }
+      
+    }
+  }
+ // SEARCH BOX PRO
+
+      .sm-searchbox{
+        .nested{
+              display: none;
+            }
+        .sm-searchbox-content{
+          position: relative;
+          .border_radius(3px);
+          background-color: #ededed;
+           height: 42px;
+          padding: 0;
+          .control{
+            .cat-wrapper {float: left;}
+            .searchbox-cat{
+              width: 115px;
+              border: 0;
+              color: #909090;
+              background: url("../images/dropdow-search-box.png") no-repeat scroll right center;
+              height: 42px;
+              font-size: 91.67%;
+              &:hover{
+                cursor: pointer;
+              }
+            }
+
+            #searchbox{
+              padding-left:20px;
+              height: 42px;
+              border: 0;
+              .border_radius(3px);
+              border-left:1px solid #dedede;
+              margin-left: 10px;
+              font-size: 91.67%;
+              color: #909090;
+              padding-right: 40px;
+              background-color: #ededed;
+              min-width: 230px;
+              width: auto;
+             
+            }
+          }
+
+          .actions{
+            .btn-searchbox{
+              background-image: url("../images/btn-search.png");
+              .border_radius(3px);
+              background-position: center center;
+              background-repeat: no-repeat;
+              height: 42px !important;
+              overflow: hidden;
+              position: absolute;
+              right: 0;
+              top:0;
+              padding: 0px !important;
+              text-indent: -9999px;
+              width: 42px;
+              .opacity(1);
+              span{
+                display: none;
+              }
+            }
+          }
+        }
+
+      }
+
+ // END SEARCH BOX PRO
+ .minicart-wrapper{
+                position: relative !important;
+                padding-left:70px;
+                margin-left: 30px;
+
+              .showcart{
+                cursor: pointer;
+                &:before{
+                  top:0;
+                  left: 0;
+                  content: "" !important;
+                   background: rgba(0, 0, 0, 0) url("../images/icon-mini-cart-red.png") no-repeat scroll right top;
+                  display: inline-block;
+                  height: 44px;
+                  position: absolute;
+                  width: 47px;
+                }
+
+                .text{
+                  white-space: nowrap;
+                  text-transform: uppercase;
+                  font-size: 116.67%;
+                  margin: 0;
+                  text-transform: uppercase;
+                }
+
+                .counter{
+                  padding:0;
+
+                  &:before,
+                  &:after{
+                    display: none;
+                  }
+
+                  .counter-number{
+                     border: 2px solid #fff;
+                    .border_radius(50%);
+                    bottom: -5px;
+                    color: #fff;
+                    display: inline-block;
+                    font-size: 14px;
+                    height: 35px;
+                    line-height: 32px;
+                    overflow: hidden;
+                    position: absolute;
+                    left: 25px;
+                    text-align: center;
+                    width: 35px;
+                    z-index: 2;
+                  }
+
+                  .counter-label{
+                    display: none !important;
+                  }
+
+                  .price-minicart{
+                    display: table-cell;
+
+  
+                    .subtotal{
+                      display: table-cell;
+                    }
+
+                    .label{
+                      display: none;
+                    }
+                  }
+                }
+              }
+
+
+            }
+  .header-bottom{
+    background: #000000 none repeat scroll 0 0;
+    min-height: 55px;
+    .main-megamenu {position: relative;}
+    
+
+ 
+  }
+}

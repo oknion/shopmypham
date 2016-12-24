@@ -1,0 +1,1 @@
+/var/www/html/magento/app/code/Sm/ImageSlider/view/adminhtml/web/js/jscolor/jscolor.js
